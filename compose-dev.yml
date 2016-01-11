@@ -1,0 +1,11 @@
+gateway:
+  build: MedBook-Gateway
+  ports:
+   - "8000:10000"
+  volumes:
+   - ./MedBook-Gateway:/app-dev
+  command: /app-dev/runDev.sh
+  links:
+   - mongo
+mongo:
+  image: mongo
