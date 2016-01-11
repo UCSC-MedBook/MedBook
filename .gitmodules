@@ -1,0 +1,12 @@
+[submodule "MedBook-Gateway"]
+	path = MedBook-Gateway
+	url = https://github.com/UCSC-MedBook/MedBook-Gateway.git
+[submodule "MedBook-Fusion5"]
+	path = MedBook-Fusion5
+	url = https://github.com/UCSC-MedBook/MedBook-Fusion5.git
+[submodule "MedBook-Telescope3"]
+	path = MedBook-Telescope3
+	url = https://github.com/UCSC-MedBook/MedBook-Telescope3.git
+[submodule "MedBook-CRFS"]
+	path = MedBook-CRFS
+	url = https://github.com/UCSC-MedBook/MedBook-CRFS.git
