@@ -8,7 +8,9 @@ gateway:
   links:
    - mongo
 #   - crfs
+#   - fusion
    - telescope
+
 
 telescope:
   build: MedBook-Telescope3
@@ -18,6 +20,15 @@ telescope:
   links:
    - mongo
 
+# some probem loading fs-extra
+# fusion:
+#   build: MedBook-Fusion5
+#   volumes:
+#   - ./MedBook-Fusion5/webapp:/app-dev
+#   command: /app-dev/dockerDev.sh
+#   links:
+#   - mongo
+# 
 # TODO need to sort out data bootstrapping problem..
 # crfs:
 #   build: MedBook-CRFS
