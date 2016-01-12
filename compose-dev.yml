@@ -7,5 +7,26 @@ gateway:
   command: /app-dev/runDev.sh
   links:
    - mongo
+#   - crfs
+   - telescope
+
+telescope:
+  build: MedBook-Telescope3
+  volumes:
+  - ./MedBook-Telescope3:/app-dev
+  command: /app-dev/dockerDev.sh
+  links:
+   - mongo
+
+# TODO need to sort out data bootstrapping problem..
+# crfs:
+#   build: MedBook-CRFS
+#   volumes:
+#   - ./MedBook-CRFS/webapp:/app-dev
+#   command: /app-dev/dockerDev.sh
+#   links:
+#    - mongo
+
+##TODO should probably pin down the version of Mongo
 mongo:
   image: mongo
