@@ -2,4 +2,5 @@
 
 parent repo for medbook project
 
-`./init.sh`
+1. `./init.sh`
+2. `docker-compose -f compose-dev.yml`
