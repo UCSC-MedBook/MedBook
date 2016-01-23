@@ -1,24 +1,18 @@
 gateway:
   build: MedBook-Gateway
+  container_name: "gateway"
   ports:
    - "8000:10000"
   volumes:
    - ./MedBook-Gateway:/app-dev
   command: /app-dev/runDev.sh
-  links:
-   - mongo
-#   - crfs
-#   - fusion
-   - telescope
-
 
 telescope:
+  container_name: "telescope"
   build: MedBook-Telescope3
   volumes:
   - ./MedBook-Telescope3:/app-dev
   command: /app-dev/dockerDev.sh
-  links:
-   - mongo
 
 # some probem loading fs-extra
 # fusion:
@@ -29,15 +23,23 @@ telescope:
 #   links:
 #   - mongo
 # 
-# TODO need to sort out data bootstrapping problem..
-# crfs:
-#   build: MedBook-CRFS
-#   volumes:
-#   - ./MedBook-CRFS/webapp:/app-dev
-#   command: /app-dev/dockerDev.sh
-#   links:
-#    - mongo
+
+crfs:
+  build: MedBook-CRFS
+  container_name: "crfs"
+  volumes:
+  - ./MedBook-CRFS/webapp:/app-dev
+  command: /app-dev/dockerDev.sh
+  environment:
+    ROOT_URL: ${ROOT_URL}/CRF
+
 
 ##TODO should probably pin down the version of Mongo
 mongo:
+  container_name: "mongo"
   image: mongo
+
+  # uncomment when you want to talk directly to moongo
+  # from outside a container
+  # ports:
+  #   - "127.0.0.1:27017:27017"

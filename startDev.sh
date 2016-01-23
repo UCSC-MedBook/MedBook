@@ -1,3 +1,3 @@
 #! /usr/bin/env bash
 
-docker-compose -f compose-dev.yml up
+ROOT_URL="http://localhost:8080" docker-compose -p medbook --x-networking -f compose-dev.yml up
