@@ -14,15 +14,14 @@ telescope:
   - ./MedBook-Telescope3:/app-dev
   command: /app-dev/dockerDev.sh
 
-# some probem loading fs-extra
-# fusion:
-#   build: MedBook-Fusion5
-#   volumes:
-#   - ./MedBook-Fusion5/webapp:/app-dev
-#   command: /app-dev/dockerDev.sh
-#   links:
-#   - mongo
-# 
+fusion:
+  build: MedBook-Fusion5
+  volumes:
+  - ./MedBook-Fusion5/webapp:/app-dev
+  container_name: fusion
+  command: /app-dev/dockerDev.sh
+  environment:
+    ROOT_URL: ${ROOT_URL}/fusion
 
 crfs:
   build: MedBook-CRFS
@@ -37,7 +36,7 @@ crfs:
 ##TODO should probably pin down the version of Mongo
 mongo:
   container_name: "mongo"
-  image: mongo
+  image: mongo:2.6.11
 
   # uncomment when you want to talk directly to moongo
   # from outside a container
