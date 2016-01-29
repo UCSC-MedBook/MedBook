@@ -10,3 +10,18 @@
 [submodule "MedBook-CRFS"]
 	path = MedBook-CRFS
 	url = https://github.com/UCSC-MedBook/MedBook-CRFS.git
+[submodule "MedBook-Wrangler"]
+	path = MedBook-Wrangler
+	url = git@github.com:UCSC-MedBook/MedBook-Wrangler.git
+[submodule "MedBook-JobRunner"]
+	path = MedBook-JobRunner
+	url = git@github.com:UCSC-MedBook/MedBook-JobRunner.git
+[submodule "MedBook-Workbench"]
+	path = MedBook-Workbench
+	url = git@github.com:UCSC-MedBook/MedBook-Workbench.git
+[submodule "MedBook-PatientCare"]
+	path = MedBook-PatientCare
+	url = https://github.com/UCSC-MedBook/MedBook-PatientCare
+[submodule "MedBook-Cron"]
+	path = MedBook-Cron
+	url = git@github.com:UCSC-MedBook/MedBook-Cron.git

@@ -32,6 +32,50 @@ crfs:
   environment:
     ROOT_URL: ${ROOT_URL}/CRF
 
+wrangler:
+  build: Medbook-Wrangler
+  container_name: "wrangler"
+  volumes:
+  - ./MedBook-Wrangler/webapp:/app-dev
+  command: /app-dev/dockerDev.sh
+  environment:
+    ROOT_URL: ${ROOT_URL}/wrangler
+
+job-runnner:
+  build: Medbook-JobRunner
+  container_name: "job-runner"
+  volumes:
+  - ./MedBook-JobRunner/webapp:/app-dev
+  command: /app-dev/dockerDev.sh
+  environment:
+    ROOT_URL: ${ROOT_URL}/job-runner
+
+# patient-care:
+#   build: MedBook-PatientCare
+#   container_name: "patientCare"
+#   volumes:
+#     - ./MedBook-PatientCare/webapp:/app-dev
+#   command: /app-dev/dockerDev.sh
+#   environment:
+#     ROOT_URL: ${ROOT_URL}/patientCare
+
+workbench:
+  build: MedBook-Workbench
+  container_name: "workbench"
+  volumes:
+    - ./MedBook-Workbench:/app-dev
+  command: /app-dev/dockerDev.sh
+  environment:
+    ROOT_URL: ${ROOT_URL}/workbench
+
+# cron:
+#   build: MedBook-Cron
+#   container_name: "cron"
+#   volumes:
+#     - ./MedBoook-Cron
+#   command: /app-dev/dockerDev.sh
+#   environment:
+#     ROOT_URL: ${ROOT_URL}/cron
 
 ##TODO should probably pin down the version of Mongo
 mongo:
