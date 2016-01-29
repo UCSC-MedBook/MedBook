@@ -22,6 +22,3 @@
 [submodule "MedBook-PatientCare"]
 	path = MedBook-PatientCare
 	url = https://github.com/UCSC-MedBook/MedBook-PatientCare
-[submodule "MedBook-Cron"]
-	path = MedBook-Cron
-	url = git@github.com:UCSC-MedBook/MedBook-Cron.git
