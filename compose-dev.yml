@@ -33,7 +33,7 @@ crfs:
     ROOT_URL: ${ROOT_URL}/CRF
 
 wrangler:
-  build: Medbook-Wrangler
+  build: MedBook-Wrangler
   container_name: "wrangler"
   volumes:
   - ./MedBook-Wrangler/webapp:/app-dev
@@ -42,7 +42,7 @@ wrangler:
     ROOT_URL: ${ROOT_URL}/wrangler
 
 job-runnner:
-  build: Medbook-JobRunner
+  build: MedBook-JobRunner
   container_name: "job-runner"
   volumes:
   - ./MedBook-JobRunner/webapp:/app-dev
