@@ -1,0 +1,66 @@
+#ansible-playbook playbook.yml -i /etc/ansible/hosts -u root
+---
+
+# - hosts: all
+#   tasks:
+#     - name: Update packages
+#       apt: update_cache=yes
+#       become: yes
+#       become_method: sudo
+
+- hosts: docker
+  tasks:
+    # Install Docker Engine
+    - name: Add Docker repository key
+      apt_key: keyserver=p80.pool.sks-keyservers.net id=58118E89F3A912897C070ADBF76221572C52609D
+      become: yes
+      become_method: sudo
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: 'deb https://apt.dockerproject.org/repo ubuntu-trusty main'
+        update_cache: yes
+      become: yes
+      become_method: sudo
+
+    # required for AUFS, but AUFS has problems building meteor images
+    # https://github.com/npm/npm/issues/9863
+    # - name: Install linux-image-extra for aufs support
+    #   apt: pkg=linux-image-extra-3.19.0-49-generic
+    #   become: yes
+    #   become_method: sudo
+
+    - name: Install docker
+      apt: pkg=docker-engine #TODO figure out how to pin this to a specific version
+      become: yes
+      become_method: sudo
+
+    - name: Install python-pip
+      apt: pkg=python-pip
+      become: yes
+      become_method: sudo
+
+    - name: Install docker-compose
+      pip: name=docker-compose
+      become: yes
+      become_method: sudo
+
+    - name: Add ubuntu user to docker group #allow ubuntu to run docker commands
+      user: name=ubuntu group=docker
+      become: yes
+      become_method: sudo
+
+- hosts: dev
+  tasks:
+    - name: Customize .bashrc
+      template: src=templates/bashrc.j2 dest=~/.bashrc
+
+    - name: Install emacs
+      apt: pkg=emacs24-nox
+      become: yes
+      become_method: sudo
+
+    - name: Install htop
+      apt: pkg=htop
+      become: yes
+      become_method: sudo

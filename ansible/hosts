@@ -1,0 +1,7 @@
+[all:vars]
+
+[dev]
+104.42.191.90 #medbook-prime
+
+[docker]
+104.42.191.90 #medbook-prime
