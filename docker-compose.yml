@@ -1,0 +1,102 @@
+version: '2'
+services: 
+  gateway:
+    container_name: "gateway"
+    ports:
+     - "8000:10000"
+    image: medbook/gateway:v0.1
+    # build: MedBook-Gateway
+    # volumes:
+    #  - ./MedBook-Gateway:/app-dev
+    # command: /app-dev/runDev.sh
+    depends_on:
+      - mongo
+      - telescope
+
+  telescope:
+    container_name: "telescope"
+    image: medbook/telescope:v0.5.6
+    environment:
+      MONGO_URL: mongodb://mongo:27017/meteor
+      ROOT_URL: http://0.0.0.0:8000
+#    build: MedBook-Telescope3
+#    volumes:
+#    - ./MedBook-Telescope3/webapp:/app-dev
+#    command: /app-dev/dockerDev.sh
+    depends_on:
+      - mongo
+
+  fusion:
+    image: medbook/fusion:v0.1.1
+    container_name: fusion
+    environment:
+      MONGO_URL: mongodb://mongo:27017/meteor
+      ROOT_URL: http://0.0.0.0:8000/fusion
+    # build: MedBook-Fusion5
+    # volumes:
+    # - ./MedBook-Fusion5/webapp:/app-dev
+    # command: /app-dev/dockerDev.sh
+    depends_on:
+      - mongo
+
+  # crfs:
+  #   build: MedBook-CRFS
+  #   container_name: "crfs"
+  #   volumes:
+  #   - ./MedBook-CRFS/webapp:/app-dev
+  #   command: /app-dev/dockerDev.sh
+  #   environment:
+  #     ROOT_URL: ${ROOT_URL}/CRF
+
+  # wrangler:
+  #   build: MedBook-Wrangler
+  #   container_name: "wrangler"
+  #   volumes:
+  #   - ./MedBook-Wrangler/webapp:/app-dev
+  #   command: /app-dev/dockerDev.sh
+  #   environment:
+  #     ROOT_URL: ${ROOT_URL}/wrangler
+
+  # job-runnner:
+  #   build: MedBook-JobRunner
+  #   container_name: "job-runner"
+  #   volumes:
+  #   - ./MedBook-JobRunner/webapp:/app-dev
+  #   command: /app-dev/dockerDev.sh
+  #   environment:
+  #     ROOT_URL: ${ROOT_URL}/job-runner
+
+  # patient-care:
+  #   build: MedBook-PatientCare
+  #   container_name: "patientCare"
+  #   volumes:
+  #     - ./MedBook-PatientCare/webapp:/app-dev
+  #   command: /app-dev/dockerDev.sh
+  #   environment:
+  #     ROOT_URL: ${ROOT_URL}/patientCare
+
+  # workbench:
+  #   build: MedBook-Workbench
+  #   container_name: "workbench"
+  #   volumes:
+  #     - ./MedBook-Workbench:/app-dev
+  #   command: /app-dev/dockerDev.sh
+  #   environment:
+  #     ROOT_URL: ${ROOT_URL}/workbench
+
+  # cron:
+  #   build: MedBook-Cron
+  #   container_name: "cron"
+  #   volumes:
+  #     - ./MedBoook-Cron
+  #   command: /app-dev/dockerDev.sh
+  #   environment:
+  #     ROOT_URL: ${ROOT_URL}/cron
+
+  ##TODO should probably pin down the version of Mongo
+  mongo:
+    container_name: "mongo"
+    image: mongo:2.6.11
+    # allows contact with mongo from localhost outside a container
+    ports:
+      - "127.0.0.1:27017:27017"
