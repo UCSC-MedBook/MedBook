@@ -1,0 +1,37 @@
+version: '2'
+services:
+  # gateway:
+  #   build: MedBook-Gateway
+  #   volumes:
+  #    - ./MedBook-Gateway:/app-dev
+  #   command: /app-dev/runDev.sh
+
+  # telescope:
+  #    build: MedBook-Telescope3
+  #    volumes:
+  #    - ./MedBook-Telescope3/webapp:/app-dev
+  #    command: /app-dev/dockerDev.sh
+
+  # fusion:
+  #   build: MedBook-Fusion5
+  #   volumes:
+  #   - ./MedBook-Fusion5/webapp:/app-dev
+  #   command: /app-dev/dockerDev.sh
+
+  # crfs:
+  #   build: MedBook-CRFS
+  #   volumes:
+  #   - ./MedBook-CRFS/webapp:/app-dev
+  #   command: /app-dev/dockerDev.sh
+
+  # wrangler:
+  #   build: MedBook-Wrangler
+  #   volumes:
+  #   - ./MedBook-Wrangler/webapp:/app-dev
+  #   command: /app-dev/dockerDev.sh
+
+  # job-runner:
+  #   build: MedBook-JobRunner
+  #   volumes:
+  #   - ./MedBook-JobRunner/webapp:/app-dev
+  #   command: /app-dev/dockerDev.sh

@@ -5,10 +5,7 @@ services:
     ports:
      - "8000:10000"
     image: medbook/gateway:v0.1
-    # build: MedBook-Gateway
-    # volumes:
-    #  - ./MedBook-Gateway:/app-dev
-    # command: /app-dev/runDev.sh
+    restart: always
     depends_on:
       - mongo
       - telescope
@@ -19,10 +16,7 @@ services:
     environment:
       MONGO_URL: mongodb://mongo:27017/meteor
       ROOT_URL: http://0.0.0.0:8000
-#    build: MedBook-Telescope3
-#    volumes:
-#    - ./MedBook-Telescope3/webapp:/app-dev
-#    command: /app-dev/dockerDev.sh
+    restart: always
     depends_on:
       - mongo
 
@@ -32,39 +26,31 @@ services:
     environment:
       MONGO_URL: mongodb://mongo:27017/meteor
       ROOT_URL: http://0.0.0.0:8000/fusion
-    # build: MedBook-Fusion5
-    # volumes:
-    # - ./MedBook-Fusion5/webapp:/app-dev
-    # command: /app-dev/dockerDev.sh
+    restart: always
     depends_on:
       - mongo
 
-  # crfs:
-  #   build: MedBook-CRFS
-  #   container_name: "crfs"
-  #   volumes:
-  #   - ./MedBook-CRFS/webapp:/app-dev
-  #   command: /app-dev/dockerDev.sh
-  #   environment:
-  #     ROOT_URL: ${ROOT_URL}/CRF
+  crfs:
+    container_name: "crfs"
+    restart: always
+    environment:
+      ROOT_URL: http://0.0.0.0:8000/CRF
+      MONGO_URL: mongodb://mongo:27017/meteor
 
-  # wrangler:
-  #   build: MedBook-Wrangler
-  #   container_name: "wrangler"
-  #   volumes:
-  #   - ./MedBook-Wrangler/webapp:/app-dev
-  #   command: /app-dev/dockerDev.sh
-  #   environment:
-  #     ROOT_URL: ${ROOT_URL}/wrangler
+  wrangler:
+    container_name: "wrangler"
+    image: medbook/wrangler@v0.1
+    restart: always
+    environment:
+      ROOT_URL: http://0.0.0.0:8000/wrangler
+      MONGO_URL: mongodb://mongo:27017/meteor
 
-  # job-runnner:
-  #   build: MedBook-JobRunner
-  #   container_name: "job-runner"
-  #   volumes:
-  #   - ./MedBook-JobRunner/webapp:/app-dev
-  #   command: /app-dev/dockerDev.sh
-  #   environment:
-  #     ROOT_URL: ${ROOT_URL}/job-runner
+  job-runner:
+    container_name: "job-runner"
+    restart: always
+    environment:
+      ROOT_URL: http://0.0.0.0:8000/job-runner
+      MONGO_URL: mongodb://mongo:27017/meteor
 
   # patient-care:
   #   build: MedBook-PatientCare
@@ -96,6 +82,7 @@ services:
   ##TODO should probably pin down the version of Mongo
   mongo:
     container_name: "mongo"
+    restart: always
     image: mongo:2.6.11
     # allows contact with mongo from localhost outside a container
     ports:
