@@ -22,3 +22,6 @@
 [submodule "MedBook-PatientCare"]
 	path = MedBook-PatientCare
 	url = https://github.com/UCSC-MedBook/MedBook-PatientCare
+[submodule "MedBook-ObservationDeck"]
+	path = MedBook-ObservationDeck
+	url = https://github.com/UCSC-MedBook/MedBook-ObservationDeck

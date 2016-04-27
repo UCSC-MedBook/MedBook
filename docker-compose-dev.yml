@@ -30,8 +30,14 @@ services:
   #   - ./MedBook-Wrangler/webapp:/app-dev
   #   command: /app-dev/dockerDev.sh
 
-  # job-runner:
-  #   build: MedBook-JobRunner
+  job-runner:
+    build: MedBook-JobRunner
+    volumes:
+    - ./MedBook-JobRunner/webapp:/app-dev
+    command: /app-dev/dockerDev.sh
+
+  # observation-deck:
+  #   build: MedBook-ObservationDeck
   #   volumes:
-  #   - ./MedBook-JobRunner/webapp:/app-dev
-  #   command: /app-dev/dockerDev.sh
+  #   - ./MedBook-ObservationDeck:/app-dev
+  #   command: cd /app-dev && meteor

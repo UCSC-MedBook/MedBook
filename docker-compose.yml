@@ -14,7 +14,7 @@ services:
     container_name: "telescope"
     image: medbook/telescope:v0.5.6
     environment:
-      MONGO_URL: mongodb://mongo:27017/meteor
+      MONGO_URL: mongodb://mongo:27017/MedBook
       ROOT_URL: http://0.0.0.0:8000
     restart: always
     depends_on:
@@ -24,33 +24,35 @@ services:
     image: medbook/fusion:v0.1.1
     container_name: fusion
     environment:
-      MONGO_URL: mongodb://mongo:27017/meteor
+      MONGO_URL: mongodb://mongo:27017/MedBook
       ROOT_URL: http://0.0.0.0:8000/fusion
     restart: always
     depends_on:
       - mongo
 
   crfs:
+    image: medbook/crfs:v0.1
     container_name: "crfs"
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/CRF
-      MONGO_URL: mongodb://mongo:27017/meteor
+      MONGO_URL: mongodb://mongo:27017/MedBook
 
   wrangler:
     container_name: "wrangler"
-    image: medbook/wrangler@v0.1
+    image: medbook/wrangler:v0.1
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/wrangler
-      MONGO_URL: mongodb://mongo:27017/meteor
+      MONGO_URL: mongodb://mongo:27017/MedBook
 
   job-runner:
     container_name: "job-runner"
     restart: always
+    image: medbook/job-runner:v0.2.0
     environment:
       ROOT_URL: http://0.0.0.0:8000/job-runner
-      MONGO_URL: mongodb://mongo:27017/meteor
+      MONGO_URL: mongodb://mongo:27017/MedBook
 
   # patient-care:
   #   build: MedBook-PatientCare
@@ -78,6 +80,15 @@ services:
   #   command: /app-dev/dockerDev.sh
   #   environment:
   #     ROOT_URL: ${ROOT_URL}/cron
+
+  observation-deck:
+    container_name: "observation-deck"
+    restart: always
+    image: medbook/observation-deck:v0.1
+    environment:
+      ROOT_URL: http://0.0.0.0:8000/observation-deck
+      MONGO_URL: mongodb://mongo:27017/MedBook
+
 
   ##TODO should probably pin down the version of Mongo
   mongo:
