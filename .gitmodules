@@ -10,3 +10,6 @@
 [submodule "MedBook-CRFS"]
 	path = MedBook-CRFS
 	url = https://github.com/UCSC-MedBook/MedBook-CRFS.git
+[submodule "meteor-docker-image"]
+	path = meteor-docker-image
+	url = https://github.com/UCSC-MedBook/meteor-docker-image.git
