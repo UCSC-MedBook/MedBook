@@ -1,3 +1,4 @@
+
 version: '2'
 services: 
   gateway:
@@ -54,14 +55,14 @@ services:
       ROOT_URL: http://0.0.0.0:8000/job-runner
       MONGO_URL: mongodb://mongo:27017/MedBook
 
-  # patient-care:
-  #   build: MedBook-PatientCare
-  #   container_name: "patientCare"
-  #   volumes:
-  #     - ./MedBook-PatientCare/webapp:/app-dev
-  #   command: /app-dev/dockerDev.sh
-  #   environment:
-  #     ROOT_URL: ${ROOT_URL}/patientCare
+  patient-care:
+    container_name: "patient-care"
+    volumes:
+      - ./MedBook-PatientCare/webapp:/app-dev
+    command: /app-dev/dockerDev.sh
+    environment:
+      ROOT_URL: http://0.0.0.0:8000/patient-care
+      MONGO_URL: mongodb://mongo:27017/MedBook
 
   # workbench:
   #   build: MedBook-Workbench

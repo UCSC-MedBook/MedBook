@@ -1,10 +1,10 @@
 version: '2'
 services:
-  # gateway:
-  #   build: MedBook-Gateway
-  #   volumes:
-  #    - ./MedBook-Gateway:/app-dev
-  #   command: /app-dev/runDev.sh
+  gateway:
+    build: MedBook-Gateway
+    volumes:
+     - ./MedBook-Gateway:/app-dev
+    command: /app-dev/runDev.sh
 
   # telescope:
   #    build: MedBook-Telescope3
@@ -29,6 +29,12 @@ services:
   #   volumes:
   #   - ./MedBook-Wrangler/webapp:/app-dev
   #   command: /app-dev/dockerDev.sh
+
+  patient-care:
+    build: patient-care
+    volumes:
+    - ./patient-care/webapp:/app-dev
+    command: /app-dev/dockerDev.sh
 
   job-runner:
     build: MedBook-JobRunner
