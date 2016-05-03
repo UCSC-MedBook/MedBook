@@ -93,4 +93,4 @@
       shell: git config --global user.email {{git_email}}
 
     - name: Set push default to simple
-      shell: git config push.default simple
+      shell: git config --global push.default simple
