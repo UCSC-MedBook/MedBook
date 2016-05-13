@@ -47,3 +47,13 @@ services:
   #   volumes:
   #   - ./MedBook-ObservationDeck:/app-dev
   #   command: cd /app-dev && meteor
+
+
+  ##TODO should probably pin down the version of Mongo
+  mongo:
+    container_name: "mongo"
+    restart: always
+    image: mongo:2.6.11
+    # allows contact with mongo from localhost outside a container
+    ports:
+      - "127.0.0.1:27017:27017"

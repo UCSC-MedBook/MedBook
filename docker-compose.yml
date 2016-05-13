@@ -60,7 +60,6 @@ services:
     image: medbook/patient-care:v0.9.1
     volumes:
       - ./MedBook-PatientCare/webapp:/app-dev
-    command: /app-dev/dockerDev.sh
     environment:
       ROOT_URL: http://0.0.0.0:8000/patient-care
       MONGO_URL: mongodb://mongo:27017/MedBook
@@ -91,12 +90,3 @@ services:
       ROOT_URL: http://0.0.0.0:8000/observation-deck
       MONGO_URL: mongodb://mongo:27017/MedBook
 
-
-  ##TODO should probably pin down the version of Mongo
-  mongo:
-    container_name: "mongo"
-    restart: always
-    image: mongo:2.6.11
-    # allows contact with mongo from localhost outside a container
-    ports:
-      - "127.0.0.1:27017:27017"
