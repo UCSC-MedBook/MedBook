@@ -15,7 +15,7 @@ services:
     container_name: "telescope"
     image: medbook/telescope:v0.5.6
     environment:
-      MONGO_URL: mongodb://mongo:27017/MedBook
+      MONGO_URL:
       ROOT_URL: http://0.0.0.0:8000
     restart: always
     depends_on:
@@ -25,7 +25,7 @@ services:
     image: medbook/fusion:v0.1.1
     container_name: fusion
     environment:
-      MONGO_URL: mongodb://mongo:27017/MedBook
+      MONGO_URL:
       ROOT_URL: http://0.0.0.0:8000/fusion
     restart: always
     depends_on:
@@ -37,7 +37,7 @@ services:
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/CRF
-      MONGO_URL: mongodb://mongo:27017/MedBook
+      MONGO_URL:
 
   wrangler:
     container_name: "wrangler"
@@ -45,7 +45,7 @@ services:
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/wrangler
-      MONGO_URL: mongodb://mongo:27017/MedBook
+      MONGO_URL:
 
   job-runner:
     container_name: "job-runner"
@@ -53,7 +53,7 @@ services:
     image: medbook/job-runner:v0.2.0
     environment:
       ROOT_URL: http://0.0.0.0:8000/job-runner
-      MONGO_URL: mongodb://mongo:27017/MedBook
+      MONGO_URL:
 
   patient-care:
     container_name: "patient-care"
@@ -62,7 +62,7 @@ services:
       - ./MedBook-PatientCare/webapp:/app-dev
     environment:
       ROOT_URL: http://0.0.0.0:8000/patient-care
-      MONGO_URL: mongodb://mongo:27017/MedBook
+      MONGO_URL:
 
   # workbench:
   #   build: MedBook-Workbench
@@ -88,5 +88,5 @@ services:
     image: medbook/observation-deck:v0.1
     environment:
       ROOT_URL: http://0.0.0.0:8000/observation-deck
-      MONGO_URL: mongodb://mongo:27017/MedBook
+      MONGO_URL:
 
