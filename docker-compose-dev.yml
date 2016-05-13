@@ -41,6 +41,8 @@ services:
   #   volumes:
   #   - ./MedBook-JobRunner/webapp:/app-dev
   #   command: /app-dev/dockerDev.sh
+  #   environment:
+  #     METEOR_SETTINGS: '{"outlier_analysis":"/home/ubuntu/medbook/MedBook-JobRunner/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/home/ubuntu/medbook/MedBook-JobRunner/external-tools/OutlierAnalysis/calculate_outlier_genes.R"}'
 
   # observation-deck:
   #   build: MedBook-ObservationDeck
