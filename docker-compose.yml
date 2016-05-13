@@ -53,12 +53,8 @@ services:
     image: medbook/job-runner:v0.9.1
     environment:
       ROOT_URL: http://0.0.0.0:8000/job-runner
-<<<<<<< HEAD
       MONGO_URL:
-=======
-      MONGO_URL: mongodb://mongo:27017/MedBook
       METEOR_SETTINGS: '{"outlier_analysis":"/home/ubuntu/medbook/MedBook-JobRunner/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/home/ubuntu/medbook/MedBook-JobRunner/external-tools/OutlierAnalysis/calculate_outlier_genes.R"}'
->>>>>>> teo-devbox
 
   patient-care:
     container_name: "patient-care"
