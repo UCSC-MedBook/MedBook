@@ -5,8 +5,12 @@ services:
     container_name: "gateway"
     ports:
      - "8000:10000"
+     - "8001:8001"
     image: medbook/gateway:v0.1
     restart: always
+    volumes:
+      - /home/ubuntu/certificates:/certificates
+
     depends_on:
       - mongo
       - telescope
@@ -27,7 +31,10 @@ services:
     environment:
       MONGO_URL:
       ROOT_URL: http://0.0.0.0:8000/fusion
+      MEDBOOK_WORKSPACE: /workspace
     restart: always
+    volumes:
+      - ./workspace:/workspace
     depends_on:
       - mongo
 

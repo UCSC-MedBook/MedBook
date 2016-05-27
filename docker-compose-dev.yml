@@ -4,7 +4,10 @@ services:
     build: MedBook-Gateway
     volumes:
      - ./MedBook-Gateway:/app-dev
+     - /home/ubuntu/certificates:/certificates
     command: /app-dev/runDev.sh
+    environment:
+      NO_SSL: "TRUE"
 
   # telescope:
   #    build: MedBook-Telescope3
@@ -12,11 +15,11 @@ services:
   #    - ./MedBook-Telescope3/webapp:/app-dev
   #    command: /app-dev/dockerDev.sh
 
-  # fusion:
-  #   build: MedBook-Fusion5
-  #   volumes:
-  #   - ./MedBook-Fusion5/webapp:/app-dev
-  #   command: /app-dev/dockerDev.sh
+  fusion:
+    build: MedBook-Fusion5
+    volumes:
+    - ./MedBook-Fusion5/webapp:/app-dev
+    command: /app-dev/dockerDev.sh
 
   # crfs:
   #   build: MedBook-CRFS
