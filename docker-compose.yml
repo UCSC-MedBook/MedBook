@@ -4,8 +4,8 @@ services:
   gateway:
     container_name: "gateway"
     ports:
-     - "8000:10000"
-     - "8001:8001"
+     - "80:10000"
+     - "443:8001"
     image: medbook/gateway:v0.1
     restart: always
     volumes:
