@@ -28,3 +28,6 @@
 [submodule "meteor-docker-image"]
 	path = meteor-docker-image
 	url = https://github.com/UCSC-MedBook/meteor-docker-image.git
+[submodule "RPad"]
+	path = RPad
+	url = https://github.com/UCSC-MedBook/RPad.git
