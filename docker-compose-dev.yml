@@ -1,6 +1,8 @@
 version: '2'
 services:
   gateway:
+    ports:
+     - "8000:10000"
     build: MedBook-Gateway
     volumes:
      - ./MedBook-Gateway:/app-dev
@@ -21,33 +23,32 @@ services:
     - ./MedBook-Fusion5/webapp:/app-dev
     command: /app-dev/dockerDev.sh
 
-  # crfs:
-  #   build: MedBook-CRFS
-  #   volumes:
-  #   - ./MedBook-CRFS/webapp:/app-dev
-  #   command: /app-dev/dockerDev.sh
+  crfs:
+    build: MedBook-CRFS
+    volumes:
+    - ./MedBook-CRFS/webapp:/app-dev
+    command: /app-dev/dockerDev.sh
 
-  # wrangler:
-  #   build: MedBook-Wrangler
-  #   volumes:
-  #   - ./MedBook-Wrangler/webapp:/app-dev
-  #   command: /app-dev/dockerDev.sh
+  wrangler:
+    build: MedBook-Wrangler
+    volumes:
+    - ./MedBook-Wrangler/webapp:/app-dev
+    command: /app-dev/dockerDev.sh
 
-  # patient-care:
-  #   build: patient-care
-  #   volumes:
-  #   - ./patient-care/webapp:/app-dev
-  #   command: /app-dev/dockerDev.sh
+  patient-care:
+    build: patient-care
+    volumes:
+    - ./patient-care/webapp:/app-dev
+    command: /app-dev/dockerDev.sh
 
-  # job-runner:
-  #   build: MedBook-JobRunner
-  #   volumes:
-  #   - ./MedBook-JobRunner/webapp:/app-dev
-  #   command: /app-dev/dockerDev.sh
-  #   volumes:
-  #     - ./MedBook-JobRunner/external-tools:/external-tools
-  #   environment:
-  #     METEOR_SETTINGS: '{"outlier_analysis":"/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/external-tools/OutlierAnalysis/calculate_outlier_genes.R","expression3_export":"/external-tools/exporters/expression3_export.py"}'
+  job-runner:
+    build: MedBook-JobRunner
+    command: /app-dev/dockerDev.sh
+    volumes:
+    - ./MedBook-JobRunner/external-tools:/external-tools
+    - ./MedBook-JobRunner/webapp:/app-dev
+    environment:
+      METEOR_SETTINGS: '{"outlier_analysis":"/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/external-tools/OutlierAnalysis/calculate_outlier_genes.R","expression3_export":"/external-tools/exporters/expression3_export.py"}'
 
   # observation-deck:
   #   build: MedBook-ObservationDeck
