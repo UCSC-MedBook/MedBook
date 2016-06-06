@@ -66,6 +66,18 @@ services:
       ROOT_URL: http://0.0.0.0:8000/patient-care
       MONGO_URL:
 
+  cbioportal:
+    container_name: "cbio"
+    image: medbook/cbioportal:v1.1.1
+    restart: always
+    environment:
+      ROOT_URL: http://0.0.0.0:8080/cbioportal
+      MYSQL_ROOT_PASSWORD: P@ssword1 
+      MYSQL_USER: cbio
+      MYSQL_PASSWORD: P@ssword1 
+      MYSQL_DATABASE: cbioportal 
+      MYSQL_HOST: mysql
+
   # workbench:
   #   build: MedBook-Workbench
   #   container_name: "workbench"
