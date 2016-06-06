@@ -4,7 +4,13 @@ services:
     build: MedBook-Gateway
     volumes:
      - ./MedBook-Gateway:/app-dev
+     - /home/ubuntu/certificates:/certificates
     command: /app-dev/runDev.sh
+    environment:
+      NO_SSL: "TRUE"
+    ports:
+      - "8000:10000"
+
 
   # telescope:
   #    build: MedBook-Telescope3
@@ -12,11 +18,11 @@ services:
   #    - ./MedBook-Telescope3/webapp:/app-dev
   #    command: /app-dev/dockerDev.sh
 
-  # fusion:
-  #   build: MedBook-Fusion5
-  #   volumes:
-  #   - ./MedBook-Fusion5/webapp:/app-dev
-  #   command: /app-dev/dockerDev.sh
+  fusion:
+    build: MedBook-Fusion5
+    volumes:
+    - ./MedBook-Fusion5/webapp:/app-dev
+    command: /app-dev/dockerDev.sh
 
   # crfs:
   #   build: MedBook-CRFS
@@ -75,3 +81,9 @@ services:
       MYSQL_USER: cbio
       MYSQL_PASSWORD: P@ssword1 
       MYSQL_DATABASE: cbioportal 
+  r-pad:
+    container_name: "r-pad"
+    build: RPad
+    volumes:
+     - ./RPad:/app-dev
+    command: /app-dev/runDev.sh
