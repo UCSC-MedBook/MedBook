@@ -57,10 +57,10 @@ services:
   #   command: cd /app-dev && meteor
 
 
-  # mongo:
-  #   container_name: "mongo"
-  #   restart: always
-  #   image: mongo:2.6.12
-  #   # allows contact with mongo from localhost outside a container
-  #   ports:
-  #     - "127.0.0.1:27017:27017"
+  mongo:
+    container_name: "mongo"
+    restart: always
+    image: mongo:2.6.12
+    # allows contact with mongo from localhost outside a container
+    ports:
+      - "127.0.0.1:27017:27017"
