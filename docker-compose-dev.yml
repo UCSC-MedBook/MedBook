@@ -1,8 +1,8 @@
 version: '2'
 services:
   gateway:
-    ports:
-     - "8000:10000"
+#     ports:
+#      - "8000:10000"
     build: MedBook-Gateway
     volumes:
      - ./MedBook-Gateway:/app-dev
@@ -35,11 +35,11 @@ services:
     - ./MedBook-Wrangler/webapp:/app-dev
     command: /app-dev/dockerDev.sh
 
-  patient-care:
-    build: patient-care
-    volumes:
-    - ./patient-care/webapp:/app-dev
-    command: /app-dev/dockerDev.sh
+  # patient-care:
+  #   build: patient-care
+  #   volumes:
+  #   - ./patient-care/webapp:/app-dev
+  #   command: /app-dev/dockerDev.sh
 
   job-runner:
     build: MedBook-JobRunner
@@ -48,7 +48,7 @@ services:
     - ./MedBook-JobRunner/external-tools:/external-tools
     - ./MedBook-JobRunner/webapp:/app-dev
     environment:
-      METEOR_SETTINGS: '{"outlier_analysis":"/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/external-tools/OutlierAnalysis/calculate_outlier_genes.R","expression3_export":"/external-tools/exporters/expression3_export.py"}'
+      METEOR_SETTINGS: '{"outlier_analysis":"/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/external-tools/OutlierAnalysis/calculate_outlier_genes.R","gene_expression_export":"/external-tools/exporters/gene_expression_export.py"}'
 
   # observation-deck:
   #   build: MedBook-ObservationDeck
@@ -57,10 +57,10 @@ services:
   #   command: cd /app-dev && meteor
 
 
-  mongo:
-    container_name: "mongo"
-    restart: always
-    image: mongo:2.6.12
-    # allows contact with mongo from localhost outside a container
-    ports:
-      - "127.0.0.1:27017:27017"
+  # mongo:
+  #   container_name: "mongo"
+  #   restart: always
+  #   image: mongo:2.6.12
+  #   # allows contact with mongo from localhost outside a container
+  #   ports:
+  #     - "127.0.0.1:27017:27017"
