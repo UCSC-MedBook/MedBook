@@ -1,4 +1,3 @@
-
 version: '2'
 services: 
   gateway:
@@ -6,21 +5,21 @@ services:
     ports:
      - "80:10000"
      - "443:8001"
-    image: medbook/gateway:v0.1
+    image: medbook/gateway:v0.1.1
     restart: always
     volumes:
       - /home/ubuntu/certificates:/certificates
 
   telescope:
     container_name: "telescope"
-    image: medbook/telescope:v0.5.7
+    image: medbook/telescope:v0.5.8
     environment:
       MONGO_URL:
       ROOT_URL: http://0.0.0.0:8000
     restart: always
 
   fusion:
-    image: medbook/fusion:v0.1.1
+    image: medbook/fusion:v0.1.7
     container_name: fusion
     environment:
       MONGO_URL:
@@ -31,7 +30,7 @@ services:
       - ./workspace:/workspace
 
   crfs:
-    image: medbook/crfs:v0.1
+    image: medbook/crfs:v0.5.3
     container_name: "crfs"
     restart: always
     environment:
@@ -40,7 +39,7 @@ services:
 
   wrangler:
     container_name: "wrangler"
-    image: medbook/wrangler:v0.9
+    image: medbook/wrangler:v0.1.1
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/wrangler
@@ -49,7 +48,7 @@ services:
   job-runner:
     container_name: "job-runner"
     restart: always
-    image: medbook/job-runner:v0.9.2
+    image: medbook/job-runner:v0.9.3
     volumes:
       - ./MedBook-JobRunner/external-tools:/external-tools
     environment:
@@ -59,7 +58,7 @@ services:
 
   patient-care:
     container_name: "patient-care"
-    image: medbook/patient-care:v0.9.3.1
+    image: medbook/patient-care:v0.9.4
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/patient-care
@@ -83,11 +82,11 @@ services:
   #   environment:
   #     ROOT_URL: ${ROOT_URL}/cron
 
-  observation-deck:
-    container_name: "observation-deck"
-    restart: always
-    image: medbook/observation-deck:v0.1
-    environment:
-      ROOT_URL: http://0.0.0.0:8000/observation-deck
-      MONGO_URL:
+#   observation-deck:
+#     container_name: "observation-deck"
+#     restart: always
+#     image: medbook/observation-deck:v0.1
+#     environment:
+#       ROOT_URL: http://0.0.0.0:8000/observation-deck
+#       MONGO_URL:
 
