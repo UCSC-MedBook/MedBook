@@ -15,6 +15,7 @@ services:
     image: medbook/telescope:v0.5.8
     environment:
       MONGO_URL:
+      MAIL_URL:
       ROOT_URL: http://0.0.0.0:8000
     restart: always
 
@@ -23,6 +24,7 @@ services:
     container_name: fusion
     environment:
       MONGO_URL:
+      MAIL_URL:
       ROOT_URL: http://0.0.0.0:8000/fusion
       MEDBOOK_WORKSPACE: /workspace
     restart: always
@@ -36,6 +38,7 @@ services:
     environment:
       ROOT_URL: http://0.0.0.0:8000/CRF
       MONGO_URL:
+      MAIL_URL:
 
   wrangler:
     container_name: "wrangler"
@@ -44,6 +47,7 @@ services:
     environment:
       ROOT_URL: http://0.0.0.0:8000/wrangler
       MONGO_URL:
+      MAIL_URL:
 
   job-runner:
     container_name: "job-runner"
@@ -54,6 +58,7 @@ services:
     environment:
       ROOT_URL: http://0.0.0.0:8000/job-runner
       MONGO_URL:
+      MAIL_URL:
       METEOR_SETTINGS: '{"outlier_analysis":"/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/external-tools/OutlierAnalysis/calculate_outlier_genes.R","gene_expression_export":"/external-tools/exporters/gene_expression_export.py"}'
 
   patient-care:
@@ -63,6 +68,7 @@ services:
     environment:
       ROOT_URL: http://0.0.0.0:8000/patient-care
       MONGO_URL:
+      MAIL_URL:
 
   # workbench:
   #   build: MedBook-Workbench
@@ -89,4 +95,5 @@ services:
 #     environment:
 #       ROOT_URL: http://0.0.0.0:8000/observation-deck
 #       MONGO_URL:
+#       MAIL_URL:
 
