@@ -63,7 +63,7 @@ services:
 
   patient-care:
     container_name: "patient-care"
-    image: medbook/patient-care:v0.9.4.1
+    image: medbook/patient-care:v0.9.4.2
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/patient-care
@@ -71,6 +71,7 @@ services:
       MAIL_URL:
       KADIRA_APP_ID: ${PATIENT_CARE_KADIRA_APP_ID}
       KADIRA_APP_SECRET: ${PATIENT_CARE_KADIRA_APP_SECRET}
+      METEOR_SETTINGS: '{"public":{"analyticsSettings":{"GoogleAnalytics":{"trackingId":"UA-77676037-2"}}}}'
 
   # workbench:
   #   build: MedBook-Workbench
