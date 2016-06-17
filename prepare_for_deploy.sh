@@ -1,3 +1,5 @@
+# Use this script before stopping and restarting the app in order to pre-download the new images
+
 # go to the MedBook parent repo
 cd ~/MedBook
 
