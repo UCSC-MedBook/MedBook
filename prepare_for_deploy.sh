@@ -16,7 +16,7 @@ git pull
 changed_images=$(git diff $LAST_HASH $(git rev-parse HEAD) docker-compose.yml | grep image | grep +)
 
 # check if there are cached images to be downloaded
-if [[ ! -z $cached_images ]]; then
+if [[ ! -z $changed_images ]]; then
     # make sure the images don't start in the next step
     unset MONGO_URL;
 
