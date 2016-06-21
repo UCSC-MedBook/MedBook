@@ -8,8 +8,8 @@ services:
      - ./MedBook-Gateway:/app-dev
      - /home/ubuntu/certificates:/certificates
     command: /app-dev/runDev.sh
-#    environment:
-#      NO_SSL: "TRUE"
+    environment:
+      NO_SSL: "TRUE"
 
   # telescope:
   #    build: MedBook-Telescope3
@@ -41,14 +41,14 @@ services:
   #   - ./patient-care/webapp:/app-dev
   #   command: /app-dev/dockerDev.sh
 
-  # job-runner:
-  #   build: MedBook-JobRunner
-  #   command: /app-dev/dockerDev.sh
-  #   volumes:
-  #   - ./MedBook-JobRunner/external-tools:/external-tools
-  #   - ./MedBook-JobRunner/webapp:/app-dev
-  #   environment:
-  #     METEOR_SETTINGS: '{"outlier_analysis":"/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/external-tools/OutlierAnalysis/calculate_outlier_genes.R","gene_expression_export":"/external-tools/exporters/gene_expression_export.py"}'
+  job-runner:
+    build: MedBook-JobRunner
+    command: /app-dev/dockerDev.sh
+    volumes:
+    - ./MedBook-JobRunner/external-tools:/external-tools
+    - ./MedBook-JobRunner/webapp:/app-dev
+    environment:
+      METEOR_SETTINGS: '{"outlier_analysis":"/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/external-tools/OutlierAnalysis/calculate_outlier_genes.R","gene_expression_export":"/external-tools/exporters/gene_expression_export.py"}'
 
   # observation-deck:
   #   build: MedBook-ObservationDeck
@@ -57,10 +57,10 @@ services:
   #   command: cd /app-dev && meteor
 
 
-  # mongo:
-  #   container_name: "mongo"
-  #   restart: always
-  #   image: mongo:2.6.12
-  #   # allows contact with mongo from localhost outside a container
-  #   ports:
-  #     - "127.0.0.1:27017:27017"
+  mongo:
+    container_name: "mongo"
+    restart: always
+    image: mongo:2.6.12
+    # allows contact with mongo from localhost outside a container
+    ports:
+      - "127.0.0.1:27017:27017"
