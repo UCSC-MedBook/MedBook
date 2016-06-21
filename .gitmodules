@@ -21,7 +21,7 @@
 	url = https://github.com/UCSC-MedBook/MedBook-Workbench.git
 [submodule "MedBook-PatientCare"]
 	path = patient-care
-	url = https://github.com/UCSC-MedBook/MedBook-PatientCare
+	url = https://github.com/UCSC-MedBook/patient-care
 [submodule "MedBook-ObservationDeck"]
 	path = MedBook-ObservationDeck
 	url = https://github.com/UCSC-MedBook/MedBook-ObservationDeck

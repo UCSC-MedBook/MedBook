@@ -1,4 +1,3 @@
-
 version: '2'
 services: 
   gateway:
@@ -6,72 +5,73 @@ services:
     ports:
      - "80:10000"
      - "443:8001"
-    image: medbook/gateway:v0.1
+    image: medbook/gateway:v0.1.1
     restart: always
     volumes:
       - /home/ubuntu/certificates:/certificates
 
-    depends_on:
-      - mongo
-      - telescope
-
   telescope:
     container_name: "telescope"
-    image: medbook/telescope:v0.5.6
+    image: medbook/telescope:v0.5.8
     environment:
       MONGO_URL:
+      MAIL_URL:
       ROOT_URL: http://0.0.0.0:8000
     restart: always
-    depends_on:
-      - mongo
 
   fusion:
-    image: medbook/fusion:v0.1.1
+    image: medbook/fusion:v0.1.7
     container_name: fusion
     environment:
       MONGO_URL:
+      MAIL_URL:
       ROOT_URL: http://0.0.0.0:8000/fusion
       MEDBOOK_WORKSPACE: /workspace
     restart: always
     volumes:
       - ./workspace:/workspace
-    depends_on:
-      - mongo
 
   crfs:
-    image: medbook/crfs:v0.1
+    image: medbook/crfs:v0.5.3
     container_name: "crfs"
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/CRF
       MONGO_URL:
+      MAIL_URL:
 
   wrangler:
     container_name: "wrangler"
-    image: medbook/wrangler:v0.9
+    image: medbook/wrangler:v0.1.1
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/wrangler
       MONGO_URL:
+      MAIL_URL:
 
   job-runner:
     container_name: "job-runner"
     restart: always
-    image: medbook/job-runner:v0.9.2
+    image: medbook/job-runner:v0.9.3.1
     volumes:
       - ./MedBook-JobRunner/external-tools:/external-tools
     environment:
       ROOT_URL: http://0.0.0.0:8000/job-runner
       MONGO_URL:
-      METEOR_SETTINGS: '{"outlier_analysis":"/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/external-tools/OutlierAnalysis/calculate_outlier_genes.R","expression3_export":"/external-tools/exporters/expression3_export.py"}'
+      MAIL_URL:
+      METEOR_SETTINGS: '{"outlier_analysis":"/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/external-tools/OutlierAnalysis/calculate_outlier_genes.R","gene_expression_export":"/external-tools/exporters/gene_expression_export.py"}'
 
   patient-care:
     container_name: "patient-care"
-    image: medbook/patient-care:v0.9.1.2
+    image: medbook/patient-care:v0.9.5.1
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/patient-care
       MONGO_URL:
+      MAIL_URL:
+      KADIRA_APP_ID: ${PATIENT_CARE_KADIRA_APP_ID}
+      KADIRA_APP_SECRET: ${PATIENT_CARE_KADIRA_APP_SECRET}
+      METEOR_SETTINGS: '{"public":{"analyticsSettings":{"GoogleAnalytics":{"trackingId":"UA-77676037-2"}}}}'
 
   # workbench:
   #   build: MedBook-Workbench
@@ -91,11 +91,12 @@ services:
   #   environment:
   #     ROOT_URL: ${ROOT_URL}/cron
 
-  observation-deck:
-    container_name: "observation-deck"
-    restart: always
-    image: medbook/observation-deck:v0.1
-    environment:
-      ROOT_URL: http://0.0.0.0:8000/observation-deck
-      MONGO_URL:
+#   observation-deck:
+#     container_name: "observation-deck"
+#     restart: always
+#     image: medbook/observation-deck:v0.1
+#     environment:
+#       ROOT_URL: http://0.0.0.0:8000/observation-deck
+#       MONGO_URL:
+#       MAIL_URL:
 
