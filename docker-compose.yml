@@ -46,7 +46,7 @@ services:
 
   wrangler:
     container_name: "wrangler"
-    image: medbook/wrangler:v0.1.1
+    image: medbook/wrangler:v0.1.2
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/wrangler
