@@ -1,15 +1,15 @@
 version: '2'
 services:
   gateway:
-    ports:
-     - "8000:10000"
+    # ports:
+    #  - "8000:10000"
     build: MedBook-Gateway
     volumes:
      - ./MedBook-Gateway:/app-dev
      - /home/ubuntu/certificates:/certificates
     command: /app-dev/runDev.sh
-    environment:
-      NO_SSL: "TRUE"
+    # environment:
+    #   NO_SSL: "TRUE"
 
   # telescope:
   #    build: MedBook-Telescope3
@@ -56,28 +56,27 @@ services:
   #   - ./MedBook-ObservationDeck:/app-dev
   #   command: cd /app-dev && meteor
 
-  cbioportal:
-    build: cbioportal-docker
-    volumes:
-    - ./cbioportal-docker/config:/custom_config
-    - /tmp/logs:/cbio-logs
-    ports:
-      - "127.0.0.1:8080:8080"
+  # cbioportal:
+  #   build: cbioportal-docker
+  #   volumes:
+  #   - ./cbioportal-docker/config:/custom_config
+  #   - /tmp/logs:/cbio-logs
+  #   ports:
+  #     - "127.0.0.1:8080:8080"
 
 
-  mysql:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: 'asdfasdf'
-      MYSQL_DATABASE: 'cbioportal'
-      MYSQL_USER: 'cbio'
-      MYSQL_PASSWORD: 'P@ssword1'
+  # mysql:
+  #   image: mysql:5.7
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: 'asdfasdf'
+  #     MYSQL_DATABASE: 'cbioportal'
+  #     MYSQL_USER: 'cbio'
+  #     MYSQL_PASSWORD: 'P@ssword1'
 
-  mongo:
-    container_name: "mongo"
-    restart: always
-    image: mongo:2.6.12
-    # allows contact with mongo from localhost outside a container
-    ports:
-      - "127.0.0.1:27017:27017"
-
+  # mongo:
+  #   container_name: "mongo"
+  #   restart: always
+  #   image: mongo:2.6.12
+  #   # allows contact with mongo from localhost outside a container
+  #   ports:
+  #     - "127.0.0.1:27017:27017"

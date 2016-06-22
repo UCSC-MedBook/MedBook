@@ -10,9 +10,9 @@ services:
     volumes:
       - /home/ubuntu/certificates:/certificates
 
-  cbioportal:
-    container_name: "cbioportal"
-    restart: always
+  # cbioportal:
+  #   container_name: "cbioportal"
+  #   restart: always
 
   telescope:
     container_name: "telescope"
