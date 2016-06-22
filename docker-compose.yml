@@ -63,7 +63,7 @@ services:
 
   patient-care:
     container_name: "patient-care"
-    image: medbook/patient-care:v0.9.5.1
+    image: medbook/patient-care:v0.9.5.2
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/patient-care
