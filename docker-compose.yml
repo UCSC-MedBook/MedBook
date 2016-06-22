@@ -10,6 +10,10 @@ services:
     volumes:
       - /home/ubuntu/certificates:/certificates
 
+  cbioportal:
+    container_name: "cbioportal"
+    restart: always
+
   telescope:
     container_name: "telescope"
     image: medbook/telescope:v0.5.8
