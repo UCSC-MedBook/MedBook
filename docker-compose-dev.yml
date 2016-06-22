@@ -1,8 +1,8 @@
 version: '2'
 services:
   gateway:
-#     ports:
-#      - "8000:10000"
+    ports:
+     - "8000:10000"
     build: MedBook-Gateway
     volumes:
      - ./MedBook-Gateway:/app-dev
