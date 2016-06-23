@@ -59,7 +59,7 @@ services:
   cbioportal:
     build: cbioportal-docker
     volumes:
-    - ./cbioportal-docker/config:/custom_config
+    - ./cbioportal-docker/config:/default_config
     - /tmp/logs:/cbio-logs
     ports:
       - "127.0.0.1:8080:8080"
@@ -72,6 +72,9 @@ services:
       MYSQL_DATABASE: 'cbioportal'
       MYSQL_USER: 'cbio'
       MYSQL_PASSWORD: 'P@ssword1'
+    ports:
+      - "127.0.0.1:3306:3306"
+
 
   mongo:
     container_name: "mongo"
