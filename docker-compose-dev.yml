@@ -8,7 +8,9 @@ services:
      - ./MedBook-Gateway:/app-dev
      - /home/ubuntu/certificates:/certificates
     command: /app-dev/runDev.sh
-    # environment:
+    environment:
+      MONGO_URL:
+      WORLD_URL:
     #   NO_SSL: "TRUE"
 
   # telescope:
