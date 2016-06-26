@@ -76,12 +76,15 @@ services:
       - "127.0.0.1:3306:3306"
 
   rpad:
+    container_name: "rpad"
     build: RPad
     ports:
       - "3000:3000"
     volumes:
       - ./RPad:/app-dev
+      - /var/run/docker.sock:/var/run/docker.sock
     command: /app-dev/runDev.sh
+    privileged: true #allows docker in docker
 
   mongo:
     container_name: "mongo"
