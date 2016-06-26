@@ -75,6 +75,13 @@ services:
     ports:
       - "127.0.0.1:3306:3306"
 
+  rpad:
+    build: RPad
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./RPad:/app-dev
+    command: /app-dev/runDev.sh
 
   mongo:
     container_name: "mongo"
