@@ -1,8 +1,8 @@
 version: '2'
 services:
   gateway:
-    ports:
-     - "8000:10000"
+    # ports:
+    #  - "8000:10000"
     build: MedBook-Gateway
     volumes:
      - ./MedBook-Gateway:/app-dev
@@ -11,6 +11,7 @@ services:
     environment:
       NO_SSL: "TRUE"
       MONGO_URL:
+      WORLD_URL:
 
   # telescope:
   #    build: MedBook-Telescope3
@@ -60,11 +61,8 @@ services:
   # cbioportal:
   #   build: cbioportal-docker
   #   volumes:
-  #   - ./cbioportal-docker/config:/default_config
+  #   - ./cbioportal-docker/config:/custom_config
   #   - /tmp/logs:/cbio-logs
-  #   ports:
-  #     - "127.0.0.1:8080:8080"
-
 
   rpad:
     container_name: "rpad"
@@ -84,4 +82,3 @@ services:
     # allows contact with mongo from localhost outside a container
     ports:
       - "127.0.0.1:27017:27017"
-
