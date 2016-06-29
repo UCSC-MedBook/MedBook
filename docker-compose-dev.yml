@@ -1,17 +1,15 @@
 version: '2'
 services:
   gateway:
-    # ports:
-    #  - "8000:10000"
-    build: MedBook-Gateway
-    volumes:
-     - ./MedBook-Gateway:/app-dev
-     - /home/ubuntu/certificates:/certificates
-    command: /app-dev/runDev.sh
+  #   build: MedBook-Gateway
+  #   volumes:
+  #    - ./MedBook-Gateway:/app-dev
+  #    - /home/ubuntu/certificates:/certificates
+  #   command: /app-dev/runDev.sh
     environment:
       NO_SSL: "TRUE"
-      MONGO_URL:
-      WORLD_URL:
+  #     MONGO_URL:
+  #     WORLD_URL:
 
   # telescope:
   #    build: MedBook-Telescope3
@@ -64,16 +62,16 @@ services:
   #   - ./cbioportal-docker/config:/custom_config
   #   - /tmp/logs:/cbio-logs
 
-  rpad:
-    container_name: "rpad"
-    build: RPad
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./RPad:/app-dev
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: /app-dev/runDev.sh
-    privileged: true #allows docker in docker
+  # rpad:
+  #   container_name: "rpad"
+  #   build: RPad
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./RPad:/app-dev
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   command: /app-dev/runDev.sh
+  #   privileged: true #allows docker in docker
 
   mongo:
     container_name: "mongo"
