@@ -10,6 +10,7 @@ services:
     command: /app-dev/runDev.sh
     environment:
       NO_SSL: "TRUE"
+      MONGO_URL:
 
   # telescope:
   #    build: MedBook-Telescope3
@@ -56,24 +57,14 @@ services:
   #   - ./MedBook-ObservationDeck:/app-dev
   #   command: cd /app-dev && meteor
 
-  cbioportal:
-    build: cbioportal-docker
-    volumes:
-    - ./cbioportal-docker/config:/default_config
-    - /tmp/logs:/cbio-logs
-    ports:
-      - "127.0.0.1:8080:8080"
+  # cbioportal:
+  #   build: cbioportal-docker
+  #   volumes:
+  #   - ./cbioportal-docker/config:/default_config
+  #   - /tmp/logs:/cbio-logs
+  #   ports:
+  #     - "127.0.0.1:8080:8080"
 
-
-  mysql:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: 'asdfasdf'
-      MYSQL_DATABASE: 'cbioportal'
-      MYSQL_USER: 'cbio'
-      MYSQL_PASSWORD: 'P@ssword1'
-    ports:
-      - "127.0.0.1:3306:3306"
 
   rpad:
     container_name: "rpad"

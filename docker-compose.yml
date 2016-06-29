@@ -10,10 +10,6 @@ services:
     volumes:
       - /home/ubuntu/certificates:/certificates
 
-  cbioportal:
-    container_name: "cbioportal"
-    restart: always
-
   telescope:
     container_name: "telescope"
     image: medbook/telescope:v0.5.8
@@ -104,3 +100,17 @@ services:
 #       MONGO_URL:
 #       MAIL_URL:
 
+  cbioportal:
+    image: medbook/cbioportal:v0.3
+    container_name: "cbioportal"
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 'asdfasdf'
+      MYSQL_DATABASE: 'cbioportal'
+      MYSQL_USER: 'cbio'
+      MYSQL_PASSWORD: 'P@ssword1'
+    ports:
+      - "127.0.0.1:3306:3306"
