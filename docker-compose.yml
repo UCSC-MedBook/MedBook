@@ -27,7 +27,7 @@ services:
     restart: always
 
   fusion:
-    image: medbook/fusion:v0.1.7
+    image: medbook/fusion:v0.2.1
     container_name: fusion
     environment:
       MONGO_URL:
