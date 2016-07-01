@@ -34,9 +34,11 @@ services:
       MAIL_URL:
       ROOT_URL: http://0.0.0.0:8000/fusion
       MEDBOOK_WORKSPACE: /workspace
+      MEDBOOK_SCRIPTS: /scripts/
     restart: always
     volumes:
       - ./workspace:/workspace
+      - ./MedBook-Fusion5/scripts:/scripts
 
   crfs:
     image: medbook/crfs:v0.5.3
