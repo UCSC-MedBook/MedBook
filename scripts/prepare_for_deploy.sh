@@ -5,7 +5,7 @@ unset MONGO_URL;
 
 # try to start all images in the docker-compose.yml file, thus forcing them to be pulled if they're not found locally
 grep image docker-compose.yml | grep -v "#" | tr "\t" " " | cut -d " " -f 6 | while read -r line; do
-    docker run $line
+    docker pull $line
 done
 
 echo "You're all prepped to restart the apps!"

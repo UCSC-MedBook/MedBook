@@ -1,7 +1,34 @@
 [all:vars]
 
 [dev]
-104.42.191.90 #medbook-prime
+# for when we put back the git configs
+# 1.2.3.4 git_name="Joe Shmoe" git_email="email@gmail.com"
+mike.medbook.io
+ted.medbook.io
+ellen.medbook.io
+teo.medbook.io
+robert.medbook.io
+staging.medbook.io
+medbook.io
 
 [docker]
-104.42.191.90 #medbook-prime
+mike.medbook.io
+ted.medbook.io
+ellen.medbook.io
+teo.medbook.io
+robert.medbook.io
+staging.medbook.io
+
+medbook.io
+13.91.93.162  #mongo
+13.93.223.224 #mongo-staging
+13.91.93.252  #mongo-dumper
+
+[prodboxes]
+medbook.io
+staging.medbook.io
+
+[mongo]
+#13.91.93.162  #mongo
+#13.91.93.252  #mongo-dumper
+#13.93.223.224  #mongo-staging
