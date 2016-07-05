@@ -17,5 +17,5 @@ export MAIL_URL="smtp://EMAIL:PASSWORD@smtp.gmail.com"
 export WORLD_URL="medbook.io" # URL where this instance will be deployed
 
 # start all the apps
-docker-compse up
+docker-compose up
 ```
