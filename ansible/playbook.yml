@@ -29,20 +29,6 @@
       become: yes
       become_method: sudo
 
-    - name: Create filesystem on attached data disk for filestore
-      filesystem: fstype=ext4 dev=/dev/sdd
-      become: yes
-      become_method: sudo
-
-    - name: Point the filestore to bigger volume
-      mount:
-        name: /filestore
-        src: /dev/sdd
-        fstype: ext4
-        state: mounted
-      become: yes
-      become_method: sudo
-
     #END AZURE SPECIFIC CODE
 
     - name: Install curl
@@ -84,7 +70,10 @@
 - hosts: dev
   tasks:
     - name: Customize .bashrc
-      template: src=templates/bashrc.j2 dest=~/.bashrc
+      template: src=templates/.bashrc dest=~/.bashrc
+
+    - name: Customize .tmux.conf
+      template: src=templates/.tmux.conf dest=~/.tmux.conf
 
     - name: Install emacs
       apt: pkg=emacs24-nox
@@ -96,16 +85,37 @@
       become: yes
       become_method: sudo
 
-    # possible to supress this waring?
-    # [WARNING]: Consider using git module rather than running git
-    # or perhaps there is a better way to do this
-    # doesn't seem like the git module supports it though
-    # http://docs.ansible.com/ansible/git_module.html
-    - name: Configure git user
-      shell: git config --global user.name {{git_name}}
-
-    - name: Configure git email
-      shell: git config --global user.email {{git_email}}
+    # # possible to supress this waring?
+    # # [WARNING]: Consider using git module rather than running git
+    # # or perhaps there is a better way to do this
+    # # doesn't seem like the git module supports it though
+    # # http://docs.ansible.com/ansible/git_module.html
+    # - name: Configure git user
+    #   shell: git config --global user.name {{git_name}}
+    #
+    # - name: Configure git email
+    #   shell: git config --global user.email {{git_email}}
 
     - name: Set push default to simple
       shell: git config --global push.default simple
+
+- hosts: prodboxes
+  tasks:
+    - name: Install mongo client
+      apt: pkg=mongodb-clients
+      become: yes
+      become_method: sudo
+
+    - name: Create filesystem on attached data disk for filestore
+      filesystem: fstype=ext4 dev=/dev/sdd
+      become: yes
+      become_method: sudo
+
+    - name: Point the filestore to bigger volume
+      mount:
+        name: /filestore
+        src: /dev/sdd
+        fstype: ext4
+        state: mounted
+      become: yes
+      become_method: sudo

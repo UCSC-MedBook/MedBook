@@ -115,3 +115,25 @@ fi
 
 
 ############### Additions ########################
+
+# `git undo-commit` to undo the last commit
+git config --global alias.undo-commit 'reset --soft HEAD^'
+
+# `gnetwork` to show the GitHub network graph page
+alias gnetwork="git log --graph --decorate --oneline"
+
+# easy git tag shortcut
+tagit () {
+    git tag -a $1 -m $1
+}
+
+# teo's PS1
+if [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
+	# assume bash
+	# PS1
+	# \[\e[<type>;<color>m\] = colors
+	# \h = hostname  (old: \u = username)
+	# \w = ~/thingies
+	# \$ = $ or # depending on if root
+	export PS1='\[\e[0;31m\]\h\[\e[0m\]:\[\e[0;36m\]\w\[\e[0m\]:\[\e[0;32m\]\j\[\e[0m\]\$ '
+fi
