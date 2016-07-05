@@ -20,15 +20,15 @@ robert.medbook.io
 staging.medbook.io
 
 medbook.io
-13.91.93.162  #mongo
-13.93.223.224 #mongo-staging
-13.91.93.252  #mongo-dumper
+mongo.medbook.io  #mongo
+mongo-staging.medbook.io #mongo-staging
+#13.91.93.252  #mongo-dumper
 
 [prodboxes]
 medbook.io
 staging.medbook.io
 
 [mongo]
-#13.91.93.162  #mongo
+mongo.medbook.io
+mongo-staging.medbook.io
 #13.91.93.252  #mongo-dumper
-#13.93.223.224  #mongo-staging
