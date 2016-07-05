@@ -14,7 +14,7 @@ cd MedBook
 # set up the required environmental variables
 export MONGO_URL=mongodb://mongo/MedBook
 export MAIL_URL="smtp://EMAIL:PASSWORD@smtp.gmail.com"
-export WORLD_URL="staging.medbook.io"
+export WORLD_URL="medbook.io" # URL where this instance will be deployed
 
 # start all the apps
 docker-compse up
