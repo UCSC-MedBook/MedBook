@@ -64,6 +64,7 @@ services:
     image: medbook/job-runner:v0.9.4.6
     volumes:
       - ./MedBook-JobRunner/external-tools:/external-tools
+      - /filestore:/filestore
     environment:
       ROOT_URL: http://0.0.0.0:8000/job-runner
       MONGO_URL:
@@ -81,6 +82,8 @@ services:
       KADIRA_APP_ID: ${PATIENT_CARE_KADIRA_APP_ID}
       KADIRA_APP_SECRET: ${PATIENT_CARE_KADIRA_APP_SECRET}
       METEOR_SETTINGS: '{"public":{"analyticsSettings":{"GoogleAnalytics":{"trackingId":"UA-77676037-2"}}}}'
+    volumes:
+      - /filestore:/filestore
 
   # workbench:
   #   build: MedBook-Workbench
