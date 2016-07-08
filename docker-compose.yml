@@ -51,10 +51,11 @@ services:
 
   wrangler:
     container_name: "wrangler"
-    image: medbook/wrangler:v0.1.2.2
+    image: medbook/wrangler:v0.1.2.3
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/wrangler
+      WORLD_URL:
       MONGO_URL:
       MAIL_URL:
 
@@ -67,16 +68,18 @@ services:
       - /filestore:/filestore
     environment:
       ROOT_URL: http://0.0.0.0:8000/job-runner
+      WORLD_URL:
       MONGO_URL:
       MAIL_URL:
       METEOR_SETTINGS: '{"limma_path":"/external-tools/limma/limma_ng.R","outlier_analysis":"/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/external-tools/OutlierAnalysis/calculate_outlier_genes.R","gene_expression_export":"/external-tools/exporters/gene_expression_export.py","gene_set_collection_export":"/external-tools/exporters/gene_set_collection_export.py","limma_phenotype_export":"/external-tools/exporters/limma_phenotype_export.py","gsea_path":"/external-tools/gsea/rgGSEA.py","gsea_jar_path":"/external-tools/gsea/gsea2-2.2.2.jar"}'
 
   patient-care:
     container_name: "patient-care"
-    image: medbook/patient-care:v0.9.5.6
+    image: medbook/patient-care:v0.9.5.7
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/patient-care
+      WORLD_URL:
       MONGO_URL:
       MAIL_URL:
       KADIRA_APP_ID: ${PATIENT_CARE_KADIRA_APP_ID}
