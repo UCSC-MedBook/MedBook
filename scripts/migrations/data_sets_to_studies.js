@@ -1,3 +1,6 @@
+// to run:
+//mongo MedBook < data_sets_to_studies.js
+
 print("Starting data_sets_to_studies migration");
 
 // Make a copy of the studies and data_sets collections
@@ -134,11 +137,11 @@ db.data_sets.find().forEach(function (dataSet) {
       };
     });
 
-    // generate the sample_index
-    var sample_index = {};
-    sample_index[migrationData.study_label] = {};
+    // generate the samples_index
+    var samples_index = {};
+    samples_index[migrationData.study_label] = {};
     samples.forEach(function(sample, index) {
-      sample_index[migrationData.study_label][sample.sample_label] = index;
+      samples_index[migrationData.study_label][sample.sample_label] = index;
     });
 
     // perform the migration
@@ -147,17 +150,16 @@ db.data_sets.find().forEach(function (dataSet) {
         value_type: "gene_expression",
         metadata: migrationData.metadata,
         samples: samples,
-        sample_index: sample_index,
-        currently_wrangling: false,
+        samples_index: samples_index,
       },
       $unset: {
         sample_labels: 1,
         gene_expression: 1,
         gene_expression_index: 1,
-        gene_expression_wrangling: 1,
       },
       $rename: {
-        gene_expression_genes: "feature_labels"
+        gene_expression_genes: "feature_labels",
+        gene_expression_wrangling: "currently_wrangling",
       }
     });
     print("migrated:", dataSet.name);
