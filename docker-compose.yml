@@ -51,7 +51,7 @@ services:
 
   wrangler:
     container_name: "wrangler"
-    image: medbook/wrangler:v0.1.2.2
+    image: medbook/wrangler:v1.0
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/wrangler
@@ -61,7 +61,7 @@ services:
   job-runner:
     container_name: "job-runner"
     restart: always
-    image: medbook/job-runner:v0.9.4.6
+    image: medbook/job-runner:v1.0
     volumes:
       - ./MedBook-JobRunner/external-tools:/external-tools
     environment:
@@ -72,7 +72,7 @@ services:
 
   patient-care:
     container_name: "patient-care"
-    image: medbook/patient-care:v0.9.5.6
+    image: medbook/patient-care:v1.0
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/patient-care
