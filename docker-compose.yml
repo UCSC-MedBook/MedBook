@@ -26,28 +26,28 @@ services:
       ROOT_URL: http://0.0.0.0:8000
     restart: always
 
-  fusion:
-    image: medbook/fusion:v0.2.1
-    container_name: fusion
-    environment:
-      MONGO_URL:
-      MAIL_URL:
-      ROOT_URL: http://0.0.0.0:8000/fusion
-      MEDBOOK_WORKSPACE: /workspace
-      MEDBOOK_SCRIPTS: /scripts/
-    restart: always
-    volumes:
-      - ./workspace:/workspace
-      - ./MedBook-Fusion5/scripts:/scripts
+#   fusion:
+#     image: medbook/fusion:v0.2.1
+#     container_name: fusion
+#     environment:
+#       MONGO_URL:
+#       MAIL_URL:
+#       ROOT_URL: http://0.0.0.0:8000/fusion
+#       MEDBOOK_WORKSPACE: /workspace
+#       MEDBOOK_SCRIPTS: /scripts/
+#     restart: always
+#     volumes:
+#       - ./workspace:/workspace
+#       - ./MedBook-Fusion5/scripts:/scripts
 
-  crfs:
-    image: medbook/crfs:v0.5.3
-    container_name: "crfs"
-    restart: always
-    environment:
-      ROOT_URL: http://0.0.0.0:8000/CRF
-      MONGO_URL:
-      MAIL_URL:
+#   crfs:
+#     image: medbook/crfs:v0.5.3
+#     container_name: "crfs"
+#     restart: always
+#     environment:
+#       ROOT_URL: http://0.0.0.0:8000/CRF
+#       MONGO_URL:
+#       MAIL_URL:
 
   wrangler:
     container_name: "wrangler"
