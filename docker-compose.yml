@@ -5,7 +5,7 @@ services:
     ports:
      - "80:10000"
      - "443:8001"
-    image: medbook/gateway:v0.2.1
+    image: medbook/gateway:v0.3
     restart: always
     volumes:
       - /home/ubuntu/certificates:/certificates
@@ -17,14 +17,14 @@ services:
   #   container_name: "cbioportal"
   #   restart: always
 
-  telescope:
-    container_name: "telescope"
-    image: medbook/telescope:v0.5.8
-    environment:
-      MONGO_URL:
-      MAIL_URL:
-      ROOT_URL: http://0.0.0.0:8000
-    restart: always
+#   telescope:
+#     container_name: "telescope"
+#     image: medbook/telescope:v0.5.8
+#     environment:
+#       MONGO_URL:
+#       MAIL_URL:
+#       ROOT_URL: http://0.0.0.0:8000
+#     restart: always
 
 #   fusion:
 #     image: medbook/fusion:v0.2.1
@@ -75,7 +75,7 @@ services:
     image: medbook/patient-care:v1.0
     restart: always
     environment:
-      ROOT_URL: http://0.0.0.0:8000/patient-care
+      ROOT_URL: http://0.0.0.0:8000
       MONGO_URL:
       MAIL_URL:
       KADIRA_APP_ID: ${PATIENT_CARE_KADIRA_APP_ID}
