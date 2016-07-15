@@ -62,7 +62,7 @@ services:
   job-runner:
     container_name: "job-runner"
     restart: always
-    image: medbook/job-runner:v0.9.4.6
+    image: medbook/job-runner:v0.9.4.7
     volumes:
       - ./MedBook-JobRunner/external-tools:/external-tools
       - /filestore:/filestore
