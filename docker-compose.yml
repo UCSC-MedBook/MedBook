@@ -72,8 +72,10 @@ services:
 
   patient-care:
     container_name: "patient-care"
-    image: medbook/patient-care:v1.0.1.4
+    image: medbook/patient-care:v1.0.1.5
     restart: always
+    volumes:
+      - ./patient-care/external-tools:/external-tools
     environment:
       ROOT_URL: http://0.0.0.0:8000
       MONGO_URL:
