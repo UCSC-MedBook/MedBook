@@ -17,14 +17,14 @@ services:
   #   container_name: "cbioportal"
   #   restart: always
 
-#   telescope:
-#     container_name: "telescope"
-#     image: medbook/telescope:v0.5.8
-#     environment:
-#       MONGO_URL:
-#       MAIL_URL:
-#       ROOT_URL: http://0.0.0.0:8000
-#     restart: always
+  telescope:
+    container_name: "telescope"
+    image: medbook/telescope:v0.5.8
+    environment:
+      MONGO_URL:
+      MAIL_URL:
+      ROOT_URL: http://0.0.0.0:8000/telescope
+    restart: always
 
 #   fusion:
 #     image: medbook/fusion:v0.2.1
