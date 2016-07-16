@@ -192,6 +192,7 @@ db.data_sets.find().forEach(function (dataSet) {
 // rename gene_expression to genomic_expression
 if (!db.genomic_expression.findOne()) {
   print("starting move from gene_expression to genomic_expression");
+  db.genomic_expression.drop()
   db.gene_expression.renameCollection("genomic_expression");
 
   db.genomic_expression.update({}, {
