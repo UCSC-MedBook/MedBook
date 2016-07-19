@@ -1,5 +1,5 @@
 // to run:
-//mongo MedBook < data_sets_to_studies.js
+// mongo MedBook < data_sets_to_studies.js
 
 print("Starting data_sets_to_studies migration");
 
