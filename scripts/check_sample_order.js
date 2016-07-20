@@ -2,19 +2,28 @@
 // sample_labels the ordered index for GenomicExpression instead of
 // gene_expression. It appears I didn't but I'm going to check this
 // in just in case (to run on production).
+// (See: data_sets_to_studies.js line 164)
 
-db.pre_migration_data_sets.find({}).forEach(function (dataSet) {
-  print("looking at", dataSet.name);
+db.pre_migration_data_sets.find({}).forEach(function (oldDataSet) {
+  print("looking at", oldDataSet.name);
 
-  if (dataSet.sample_labels.length !== dataSet.gene_expression.length) {
-    console.log("different lengths!!");
+  var newDataSet = db.data_sets.findOne({
+    _id: oldDataSet._id
+  });
+
+  if (!newDataSet) { return; }
+
+  if (newDataSet.sample_labels.length !== oldDataSet.gene_expression.length) {
+    print("different lengths!!");
     return;
   }
 
-  for (var i = 0; i < dataSet.sample_labels.length; i++) {
-    if (dataSet.sample_labels[i] !== dataSet.gene_expression[i]) {
-      console.log("CHANGED INDEXES:", i);
+  for (var i = 0; i < oldDataSet.sample_labels.length; i++) {
+    if (newDataSet.sample_labels[i] !== oldDataSet.gene_expression[i]) {
+      print("CHANGED INDEXES:", i);
       return;
     }
   }
+
+  print("no problems here")
 });
