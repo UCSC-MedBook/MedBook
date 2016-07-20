@@ -13,17 +13,15 @@ db.pre_migration_data_sets.find({}).forEach(function (oldDataSet) {
 
   if (!newDataSet) { return; }
 
-  if (newDataSet.sample_labels.length !== oldDataSet.gene_expression.length) {
-    print("different lengths!!");
+  if (oldDataSet.sample_labels.length !== oldDataSet.gene_expression.length) {
+    print("DIFFERENT LENGTHS!!");
     return;
   }
 
   for (var i = 0; i < oldDataSet.sample_labels.length; i++) {
-    if (newDataSet.sample_labels[i] !== oldDataSet.gene_expression[i]) {
+    if (oldDataSet.sample_labels[i].indexOf(oldDataSet.gene_expression[i]) === -1) {
       print("CHANGED INDEXES:", i);
       return;
     }
   }
-
-  print("no problems here")
 });
