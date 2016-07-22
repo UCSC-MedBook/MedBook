@@ -15,6 +15,7 @@ tar zcvf dump.zip dump
 rm -rf dump
 
 # send it to staging
+
 staging="staging.medbook.io"
 scp dump.zip ubuntu@$staging:/home/ubuntu/
 
