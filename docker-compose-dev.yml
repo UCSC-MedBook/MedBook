@@ -4,13 +4,10 @@ services:
     ports:
      - "8000:10000"
     build: MedBook-Gateway
-    volumes:
-     - ./MedBook-Gateway:/app-dev
-     - /home/ubuntu/certificates:/certificates
-    command: /app-dev/runDev.sh
+    # volumes:
+    #  - ./MedBook-Gateway:/app-dev
+    # command: /app-dev/runDev.sh
     environment:
-      MONGO_URL:
-      WORLD_URL:
       NO_SSL: "TRUE"
 
   # telescope:
@@ -36,6 +33,12 @@ services:
   #   volumes:
   #   - ./MedBook-Wrangler/webapp:/app-dev
   #   command: /app-dev/dockerDev.sh
+
+  # patient-care:
+  #   build: patient-care
+  #   # volumes:
+  #   #   - ./patient-care/webapp:/app-dev
+  #   # command: /app-dev/dockerDev.sh
 
   # patient-care:
   #   build: patient-care
