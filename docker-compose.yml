@@ -111,8 +111,9 @@ services:
 #       ROOT_URL: http://0.0.0.0:8000/observation-deck
 #       MONGO_URL:
 #       MAIL_URL:
+
   cbioportal:
-    image: medbook/cbioportal:v0.3
+    image: medbook/cbioportal:v1.2.1
     container_name: "cbioportal"
     restart: always
 
@@ -123,5 +124,8 @@ services:
       MYSQL_DATABASE: 'cbioportal'
       MYSQL_USER: 'cbio'
       MYSQL_PASSWORD: 'P@ssword1'
+    volumes:
+    - /mnt/mysql:/var/lib/mysql
+    - /mnt/mysql-dump:/mysql-dump
     ports:
       - "127.0.0.1:3306:3306"
