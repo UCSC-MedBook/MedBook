@@ -3,7 +3,7 @@ services:
   gateway:
     ports:
      - "8000:10000"
-    build: MedBook-Gateway
+    # build: MedBook-Gateway
     # volumes:
     #  - ./MedBook-Gateway:/app-dev
     # command: /app-dev/runDev.sh
