@@ -3,6 +3,7 @@
 Parent repo for the MedBook project.
 
 ## Getting started
+
 ```sh
 # clone this repo
 git clone https://github.com/UCSC-MedBook/MedBook
@@ -18,4 +19,18 @@ export WORLD_URL="medbook.io" # URL where this instance will be deployed
 
 # start all the apps
 docker-compose up
+```
+
+The last line (`docker-compose up`) assumes you have a seperate box for the mongo database. To run mongo as a docker image, call `./startDev.sh`. 
+
+### Setting up cBioPortal
+```sh
+# move the sql db to where you can restore it from
+mv dump.sql /mnt/mysql-dump
+
+# start the mysql container (as well as the other apps)
+docker-compose up
+
+# connect to the sql database and restore from dump.sql
+docker run -v /mnt/mysql-dump/:/hi mysql:5.7 bash -c "mysql -u root -pasdfasdf cbioportal < /hi/dump.sql"
 ```
