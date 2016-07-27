@@ -32,5 +32,10 @@ mv dump.sql /mnt/mysql-dump
 docker-compose up
 
 # connect to the sql database and restore from dump.sql
-docker run -v /mnt/mysql-dump/:/hi mysql:5.7 bash -c "mysql -u root -pasdfasdf cbioportal < /hi/dump.sql"
+docker exec -it mysql /bin/bash
+
+# restore from dump.sql from within the docker container
+mysql -h localhost -u cbio -pP@ssword1;
+use cbioportal; # `CREATE DATABASE CBIOPORTAL` if it doesn't exist already
+source /mnt/mysql-dump/dump.sql;
 ```
