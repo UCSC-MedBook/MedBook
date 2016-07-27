@@ -5,7 +5,7 @@ services:
     ports:
      - "80:10000"
      - "443:8001"
-    image: medbook/gateway:v0.3.1
+    image: medbook/gateway:v0.3.2
     restart: always
     volumes:
       - /home/ubuntu/certificates:/certificates
