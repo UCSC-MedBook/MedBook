@@ -119,6 +119,7 @@ services:
 
   mysql:
     image: mysql:5.7
+    container_name: "mysql"
     environment:
       MYSQL_ROOT_PASSWORD: 'asdfasdf'
       MYSQL_DATABASE: 'cbioportal'
