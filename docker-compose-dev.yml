@@ -3,7 +3,7 @@ services:
   gateway:
     ports:
      - "8000:10000"
-    build: MedBook-Gateway
+    # build: MedBook-Gateway
     # volumes:
     #  - ./MedBook-Gateway:/app-dev
     # command: /app-dev/runDev.sh
@@ -34,17 +34,17 @@ services:
   #   - ./MedBook-Wrangler/webapp:/app-dev
   #   command: /app-dev/dockerDev.sh
 
-  patient-care:
-    build: patient-care
-    volumes:
-    - ./patient-care/webapp:/app-dev
-    command: /app-dev/dockerDev.sh
+  # patient-care:
+  #   build: patient-care
+  #   volumes:
+  #   - ./patient-care/webapp:/app-dev
+  #   command: /app-dev/dockerDev.sh
 
-  job-runner:
-    build: MedBook-JobRunner
-    command: /app-dev/dockerDev.sh
-    volumes:
-    - ./MedBook-JobRunner/webapp:/app-dev
+  # job-runner:
+  #   build: MedBook-JobRunner
+  #   command: /app-dev/dockerDev.sh
+  #   volumes:
+  #   - ./MedBook-JobRunner/webapp:/app-dev
 
   # observation-deck:
   #   build: MedBook-ObservationDeck
