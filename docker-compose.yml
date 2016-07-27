@@ -5,7 +5,7 @@ services:
     ports:
      - "80:10000"
      - "443:8001"
-    image: medbook/gateway:v0.3.1
+    image: medbook/gateway:v0.3.2
     restart: always
     volumes:
       - /home/ubuntu/certificates:/certificates
@@ -13,18 +13,14 @@ services:
       MONGO_URL:
       WORLD_URL:
 
-  # cbioportal:
-  #   container_name: "cbioportal"
+  # telescope:
+  #   container_name: "telescope"
+  #   image: medbook/telescope:v0.5.8
+  #   environment:
+  #     MONGO_URL:
+  #     MAIL_URL:
+  #     ROOT_URL: http://0.0.0.0:8000/telescope
   #   restart: always
-
-  telescope:
-    container_name: "telescope"
-    image: medbook/telescope:v0.5.8
-    environment:
-      MONGO_URL:
-      MAIL_URL:
-      ROOT_URL: http://0.0.0.0:8000/telescope
-    restart: always
 
 #   fusion:
 #     image: medbook/fusion:v0.2.1
@@ -62,7 +58,7 @@ services:
   job-runner:
     container_name: "job-runner"
     restart: always
-    image: medbook/job-runner:v1.0.5
+    image: medbook/job-runner:v1.0.6
     volumes:
       - ./MedBook-JobRunner/external-tools:/external-tools
       - /filestore:/filestore
@@ -75,7 +71,7 @@ services:
 
   patient-care:
     container_name: "patient-care"
-    image: medbook/patient-care:v1.0.2.6
+    image: medbook/patient-care:v1.0.2.7
     restart: always
     volumes:
       - ./patient-care/external-tools:/external-tools
@@ -115,3 +111,22 @@ services:
 #       ROOT_URL: http://0.0.0.0:8000/observation-deck
 #       MONGO_URL:
 #       MAIL_URL:
+
+  cbioportal:
+    image: medbook/cbioportal:v1.2.1
+    container_name: "cbioportal"
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    container_name: "mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'asdfasdf'
+      MYSQL_DATABASE: 'cbioportal'
+      MYSQL_USER: 'cbio'
+      MYSQL_PASSWORD: 'P@ssword1'
+    volumes:
+    - /mnt/mysql:/var/lib/mysql
+    - /mnt/mysql-dump:/mysql-dump
+    ports:
+      - "127.0.0.1:3306:3306"

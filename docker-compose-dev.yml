@@ -45,17 +45,12 @@ services:
   #   volumes:
   #   - ./patient-care/webapp:/app-dev
   #   command: /app-dev/dockerDev.sh
-  #   environment:
-  #     METEOR_SETTINGS: '{"genomic_expression_export":"/external-tools/exporters/genomic_expression_export.py","public":{"analyticsSettings":{"GoogleAnalytics":{"trackingId":"UA-77676037-2"}}}}'
 
   # job-runner:
   #   build: MedBook-JobRunner
   #   command: /app-dev/dockerDev.sh
   #   volumes:
-  #   - ./MedBook-JobRunner/external-tools:/external-tools
   #   - ./MedBook-JobRunner/webapp:/app-dev
-  #   environment:
-  #     METEOR_SETTINGS: '{"limma_path":"/external-tools/limma/limma_ng.R","outlier_analysis":"/external-tools/OutlierAnalysis/outlier-analysis.sh","calculate_outlier_genes":"/external-tools/OutlierAnalysis/calculate_outlier_genes.R","genomic_expression_export":"/external-tools/exporters/genomic_expression_export.py","gene_set_collection_export":"/external-tools/exporters/gene_set_collection_export.py","limma_phenotype_export":"/external-tools/exporters/limma_phenotype_export.py","gsea_path":"/external-tools/gsea/rgGSEA.py","gsea_jar_path":"/external-tools/gsea/gsea2-2.2.2.jar"}'
 
   # observation-deck:
   #   build: MedBook-ObservationDeck
@@ -68,9 +63,17 @@ services:
   #   volumes:
   #   - ./cbioportal-docker/config:/custom_config
   #   - /tmp/logs:/cbio-logs
-  #   ports:
-  #     - "127.0.0.1:8080:8080"
 
+  # rpad:
+  #   container_name: "rpad"
+  #   build: RPad
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./RPad:/app-dev
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   command: /app-dev/runDev.sh
+  #   privileged: true #allows docker in docker
 
   # mysql:
   #   image: mysql:5.7

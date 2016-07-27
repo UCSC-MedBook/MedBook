@@ -31,3 +31,6 @@
 [submodule "cbioportal-docker"]
 	path = cbioportal-docker
 	url = https://github.com/UCSC-MedBook/cbioportal-docker.git
+[submodule "RPad"]
+	path = RPad
+	url = https://github.com/UCSC-MedBook/RPad.git
