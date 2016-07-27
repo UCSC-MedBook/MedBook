@@ -37,5 +37,5 @@ docker exec -it mysql /bin/bash
 # restore from dump.sql from within the docker container
 mysql -h localhost -u cbio -pP@ssword1;
 use cbioportal; # `CREATE DATABASE CBIOPORTAL` if it doesn't exist already
-source /mnt/mysql-dump/dump.sql;
+source /mysql-dump/dump.sql;
 ```
