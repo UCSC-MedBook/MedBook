@@ -119,3 +119,19 @@
         state: mounted
       become: yes
       become_method: sudo
+
+- hosts: backup
+  tasks:
+    - name: Create filesystem on attached data disk for backups
+      filesystem: fstype=ext4 dev=/dev/sdc
+      become: yes
+      become_method: sudo
+
+    - name: Point /backups to larger disk
+      mount:
+        name: /backups
+        src: /dev/sdc
+        fstype: ext4
+        state: mounted
+      become: yes
+      become_method: sudo

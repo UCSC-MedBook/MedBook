@@ -11,6 +11,7 @@ robert.medbook.io
 staging.medbook.io
 medbook.io
 rob.medbook.io
+backup.medbook.io
 
 [docker]
 mike.medbook.io
@@ -22,15 +23,12 @@ staging.medbook.io
 rob.medbook.io
 
 medbook.io
-mongo.medbook.io  #mongo
-mongo-staging.medbook.io #mongo-staging
-#13.91.93.252  #mongo-dumper
+mongo.medbook.io
+mongo-staging.medbook.io
 
 [prodboxes]
 medbook.io
 staging.medbook.io
 
-[mongo]
-mongo.medbook.io
-mongo-staging.medbook.io
-#13.91.93.252  #mongo-dumper
+[backup]
+backup.medbook.io
