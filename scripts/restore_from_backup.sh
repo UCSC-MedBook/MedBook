@@ -39,9 +39,9 @@ cd "$backup_name"
 
 # restore mongo
 mongo_host="localhost"
-if [ $HOSTNAME -eq "medbook-prod" ] ; then
+if [ $HOSTNAME = "medbook-prod" ] ; then
   mongo_host="mongo"
-elif [ $HOSTNAME -eq "medbook-staging" ] ; then
+elif [ $HOSTNAME = "medbook-staging" ] ; then
   mongo_host="mongo-staging"
 fi
 mongo MedBook -h $mongo_host --eval "db.dropDatabase()"
