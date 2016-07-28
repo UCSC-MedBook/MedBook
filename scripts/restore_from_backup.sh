@@ -22,7 +22,7 @@ if [ -z "$backup_name" ] ; then
 fi
 
 # download the backup from the backup box
-scp "ubuntu@backup.medbook.io:/backups/$backup_name.tgz" .
+rsync "ubuntu@backup.medbook.io:/backups/$backup_name.tgz" .
 
 # if the download failed, tell the user
 if [ $? -ne 0 ] ; then
