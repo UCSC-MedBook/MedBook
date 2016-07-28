@@ -90,6 +90,11 @@
       become: yes
       become_method: sudo
 
+    - name: Install tree
+      apt: pkg=tree
+      become: yes
+      become_method: sudo
+
     # # possible to supress this waring?
     # # [WARNING]: Consider using git module rather than running git
     # # or perhaps there is a better way to do this
