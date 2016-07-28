@@ -10,6 +10,7 @@ teo.medbook.io
 robert.medbook.io
 staging.medbook.io
 medbook.io
+rob.medbook.io
 
 [docker]
 mike.medbook.io
@@ -18,6 +19,7 @@ ellen.medbook.io
 teo.medbook.io
 robert.medbook.io
 staging.medbook.io
+rob.medbook.io
 
 medbook.io
 mongo.medbook.io  #mongo
