@@ -22,7 +22,7 @@ cd $backup_name
 mongo_host="localhost"
 if [ $HOSTNAME = "medbook-prod" ] ; then
   mongo_host="mongo"
-elif [ $HOSTNAME = "medbook-staging" ] ; then
+elif [ $HOSTNAME = "medbook-staging-2" ] ; then
   mongo_host="mongo-staging"
 fi
 mongodump -d MedBook -h $mongo_host
@@ -44,11 +44,13 @@ rm -rf $backup_name
 rm -rf $backup_name.tgz
 
 # if backing up from production, restore to staging
-if [ $HOSTNAME = "eduroam-169-233-234-140.ucsc.edu" ] ; then
+if [ $HOSTNAME = "medbook-prod" ] ; then
   echo "restoring on staging..."
 
   # call the restore script remotely from production
-  ssh ubuntu@staging.medbook.io "cd /mnt && /home/ubuntu/MedBook/scripts/restore_from_backup.sh $backup_name"
+  # NOTE: this will fail if /mnt/ubunt hasn't been set up on staging:
+  # sudo mkdir /mnt/ubuntu && sudo chown ubuntu /mnt/ubuntu
+  ssh ubuntu@staging.medbook.io "cd /mnt/ubuntu && sudo /home/ubuntu/MedBook/scripts/restore_from_backup.sh $backup_name"
 
   # check if there were errors restoring
   if [ $? -ne 0 ] ; then

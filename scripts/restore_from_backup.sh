@@ -41,7 +41,7 @@ cd "$backup_name"
 mongo_host="localhost"
 if [ $HOSTNAME = "medbook-prod" ] ; then
   mongo_host="mongo"
-elif [ $HOSTNAME = "medbook-staging" ] ; then
+elif [ $HOSTNAME = "medbook-staging-2" ] ; then
   mongo_host="mongo-staging"
 fi
 mongo MedBook -h $mongo_host --eval "db.dropDatabase()"
