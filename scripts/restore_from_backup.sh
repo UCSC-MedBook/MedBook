@@ -15,35 +15,40 @@ backup_name=$1
 
 # make sure they provide a backup to grab
 if [ -z "$backup_name" ] ; then
-    echo "Please specify a specific backup from which to restore."
-    echo ""
-    echo "Usage: ./restore_from_backup.sh backup.medbook-prod.2016-07-28_13-12-28";
-    exit 1;
+  echo "Please specify a specific backup from which to restore."
+  echo ""
+  echo "Usage: ./restore_from_backup.sh backup.medbook-prod.2016-07-28_13-12-28";
+  exit 1;
 fi
 
 # download the backup from the backup box
-scp "ubuntu@backup.medbook.io:/backups/$backup_name.zip" .
+scp "ubuntu@backup.medbook.io:/backups/$backup_name.tgz" .
 
-# if the download fialed, tell the user
+# if the download failed, tell the user
 if [ $? -ne 0 ] ; then
-    echo "No backup found: $backup_name"
-    exit 1;
+  echo "No backup found: $backup_name"
+  exit 1;
 fi
 
 # uncompress the backup, delete compressed backup
-tar xf "$backup_name.zip"
-rm -rf "$backup_name.zip"
+tar zxf "$backup_name.tgz"
+rm -rf "$backup_name.tgz"
 
 # go to the backup folder
 cd "$backup_name"
 
 # restore mongo
-mongo MedBook --eval "db.dropDatabase()"
-mongorestore
+mongo_host="localhost"
+if [ $HOSTNAME -eq "medbook-prod" ] ; then
+  mongo_host="mongo"
+elif [ $HOSTNAME -eq "medbook-staging" ] ; then
+  mongo_host="mongo-staging"
+fi
+mongo MedBook -h $mongo_host --eval "db.dropDatabase()"
+mongorestore -h $mongo_host
 
 # restore the filestore
-rm -rf /filestore/*
-cp -r filestore/* /filestore
+rsync -r filestore/ /filestore
 
 # delete the uncompressed local backup
 cd ..
