@@ -2,12 +2,12 @@
 # ansible-playbook playbook.yml -i hosts -u ubuntu
 ---
 
-# - hosts: all
-#   tasks:
-#     - name: Update packages
-#       apt: update_cache=yes
-#       become: yes
-#       become_method: sudo
+- hosts: all
+  tasks:
+    - name: Update packages
+      apt: update_cache=yes
+      become: yes
+      become_method: sudo
 
 - hosts: docker
   tasks:
@@ -108,6 +108,30 @@
 
     - name: Set push default to simple
       shell: git config --global push.default simple
+
+# https://coderwall.com/p/hdul2g/update-locale-and-timezone-on-ubuntu
+# TODO: figure out hwo to put this with the other dev host things
+- name: Set the locale and the time zone
+  hosts: dev
+  become: yes
+  become_method: sudo
+
+  vars:
+    locale: en_US.UTF-8
+    timezone: America/Los_Angeles
+
+  tasks:
+    - name: set locale
+      command: /usr/sbin/update-locale LANG={{ locale }} LC_ALL={{ locale }}
+    - name: set /etc/localtime
+      file: src=/usr/share/zoneinfo/{{ timezone }} dest=/etc/localtime state=link
+    - name: set /etc/timezone
+      template: src=templates/etc/timezone dest=/etc/timezone
+      notify: update tzdata
+
+  handlers:
+    - name: update tzdata
+      command: /usr/sbin/dpkg-reconfigure --frontend noninteractive tzdata
 
 - hosts: prodboxes
   tasks:
