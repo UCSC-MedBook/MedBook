@@ -13,6 +13,7 @@ cd MedBook
 ./init.sh
 
 # set up the required environmental variables
+# NOTE: on medbook.io these are stored in a file: `source ~/set_up_environment.sh`
 export MONGO_URL=mongodb://mongo/MedBook
 export MAIL_URL="smtp://EMAIL:PASSWORD@smtp.gmail.com"
 export WORLD_URL="medbook.io" # URL where this instance will be deployed
