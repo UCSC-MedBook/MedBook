@@ -25,7 +25,7 @@ if [ $HOSTNAME = "medbook-prod" ] ; then
 elif [ $HOSTNAME = "medbook-staging-2" ] ; then
   mongo_host="mongo-staging"
 fi
-mongodump -d MedBook -h $mongo_host
+mongodump -d MedBook --host $mongo_host
 
 # create a copy of the filestore
 cp -r /filestore .
@@ -50,7 +50,7 @@ if [ $HOSTNAME = "medbook-prod" ] ; then
   # call the restore script remotely from production
   # NOTE: this will fail if /mnt/ubunt hasn't been set up on staging:
   # sudo mkdir /mnt/ubuntu && sudo chown ubuntu /mnt/ubuntu
-  ssh ubuntu@staging.medbook.io "cd /mnt/ubuntu && sudo /home/ubuntu/MedBook/scripts/restore_from_backup.sh $backup_name"
+  ssh ubuntu@staging.medbook.io "cd /mnt/ubuntu && /home/ubuntu/MedBook/scripts/restore_from_backup.sh $backup_name"
 
   # check if there were errors restoring
   if [ $? -ne 0 ] ; then
