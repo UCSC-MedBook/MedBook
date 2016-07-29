@@ -48,7 +48,7 @@ mongo MedBook --host $mongo_host --eval "db.dropDatabase()"
 mongorestore --host $mongo_host
 
 # restore the filestore
-rsync -r filestore/ /filestore
+sudo rsync -r filestore/ /filestore
 
 # delete the uncompressed local backup
 cd ..

@@ -9,6 +9,10 @@
 # becasue there's lots of free space there.
 #
 # Usage: ./create_backup.sh
+#
+# Cron command:
+# At 3:30 am create a backup and send the logs to /var/log/cron
+# 30 3 * * * /home/ubuntu/MedBook/scripts/create_backup.sh > /home/ubuntu/backup_logs.txt 2>&1
 
 # create folder and go to it
 date=`date +%Y-%m-%d_%H-%M-%S`
