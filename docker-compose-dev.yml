@@ -65,9 +65,19 @@ services:
   #     - "3000:3000"
   #   volumes:
   #     - ./RPad:/app-dev
+  #     # allows RPad to create docker containers
   #     - /var/run/docker.sock:/var/run/docker.sock
+  #   environment:
+  #     RPAD_SERVER: http://localhost:8200
   #   command: /app-dev/runDev.sh
-  #   privileged: true #allows docker in docker
+
+  # nginx:
+  #   container_name: "nginx"
+  #   image: nginx:stable
+  #   ports:
+  #     - "8200:8200"
+  #   volumes:
+  #     - ./RPad/nginx.conf:/etc/nginx/nginx.conf
 
   # mysql:
   #   image: mysql:5.7
