@@ -32,3 +32,6 @@ staging.medbook.io
 
 [backup]
 backup.medbook.io
+
+[extraStorage]
+robert.medbook.io

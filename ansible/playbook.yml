@@ -169,3 +169,19 @@
         state: mounted
       become: yes
       become_method: sudo
+
+- hosts: extraStorage
+  tasks:
+    - name: Create filesystem on attached data disk for extra storage
+      filesystem: fstype=ext4 dev=/dev/sdd
+      become: yes
+      become_method: sudo
+
+    - name: Point /data to larger disk
+      mount:
+        name: /data
+        src: /dev/sdd
+        fstype: ext4
+        state: mounted
+      become: yes
+      become_method: sudo
