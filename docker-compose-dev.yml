@@ -40,14 +40,14 @@ services:
   #   #   - ./patient-care/webapp:/app-dev
   #   # command: /app-dev/dockerDev.sh
 
-  # patient-care:
-  #   build: patient-care
+  patient-care:
+    build: patient-care
   #   volumes:
   #   - ./patient-care/webapp:/app-dev
   #   command: /app-dev/dockerDev.sh
 
-  # job-runner:
-  #   build: MedBook-JobRunner
+  job-runner:
+    build: MedBook-JobRunner
   #   command: /app-dev/dockerDev.sh
   #   volumes:
   #   - ./MedBook-JobRunner/webapp:/app-dev
