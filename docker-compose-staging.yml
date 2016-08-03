@@ -2,3 +2,14 @@ version: '2'
 services:
   patient-care:
     build: patient-care
+    image: medbook/patient-care:vBuilt
+  job-runner:
+    image: medbook/job-runner:vBuilt
+    build: MedBook-JobRunner
+  mongo:
+    container_name: "mongo"
+    restart: always
+    image: mongo:2.6.12
+    # allows contact with mongo from localhost outside a container
+    ports:
+      - "127.0.0.1:27017:27017"
