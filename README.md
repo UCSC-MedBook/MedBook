@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/UCSC-MedBook/MedBook.png?label=ready&title=Ready)](https://waffle.io/UCSC-MedBook/MedBook)
 # MedBook
 
 Parent repo for the MedBook project.
