@@ -36,8 +36,11 @@ docker-compose up
 # connect to the sql database and restore from dump.sql
 docker exec -it mysql /bin/bash
 
-# restore from dump.sql from within the docker container
+# restore from dump.sql from within the docker container (uncompressed)
 mysql -h localhost -u cbio -pP@ssword1;
 use cbioportal; # `CREATE DATABASE CBIOPORTAL` if it doesn't exist already
 source /mysql-dump/dump.sql;
+
+# restore from dump.sql.gz within the docker container (compressed)
+zcat /mysql-dump/dump_new.sql.gz | mysql -h localhost -u cbio -pP@ssword1 cbioportal
 ```
