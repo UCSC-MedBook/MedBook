@@ -52,7 +52,7 @@ if [ $HOSTNAME = "medbook-prod" ] ; then
   echo "restoring on staging..."
 
   # call the restore script remotely from production
-  # NOTE: this will fail if /mnt/ubunt hasn't been set up on staging:
+  # NOTE: this will fail if /mnt/ubuntu hasn't been set up on staging:
   # sudo mkdir /mnt/ubuntu && sudo chown ubuntu /mnt/ubuntu
   ssh ubuntu@staging.medbook.io "cd /mnt/ubuntu && /home/ubuntu/MedBook/scripts/restore_from_backup.sh $backup_name"
 
