@@ -1,3 +1,5 @@
+# run from a machine that has ansible installed
+# and has ssh access (via public key) to all hosts involved.
 # to run:
 # ansible-playbook playbook.yml -i hosts -u ubuntu
 ---
