@@ -57,6 +57,7 @@ The backup files are stored here: `backup.medbook.io:/backups`. `/backups` is a 
 
 A couple notes/gotchas:
 - Backups are named as follows: backup.[hostname].[year]-[month]-[day]_[hour]-[minute]-[second]
+- Backups on the production machine run at `/backup` (a mounted disk) so there's enough space to dump and compress the database.
 - When a backup is run on the production machine (`HOSTNAME="medbook-prod"`) the backup is restored on staging as part of the backup script.
 - The mongo host is assumed to be `localhost` except for on `medbook-prod` (medbook.io) and `medbook-staging-2` (staging.medbook.io), where the hostname is hardcoded as `mongo` and `mongo-staging` respectively. 
 - Anyone can create a backup from any machine, so long as they have `scp` access to `backup.medbook.io`. This could be useful if someone had run a migration and wanted to share the migrated data with someone.
