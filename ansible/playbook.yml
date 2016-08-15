@@ -133,7 +133,7 @@
     - name: update tzdata
       command: /usr/sbin/dpkg-reconfigure --frontend noninteractive tzdata
 
-- hosts: prodboxes
+- hosts: prodLike
   tasks:
     - name: Install mongo client
       apt: pkg=mongodb-clients
@@ -183,5 +183,30 @@
         src: /dev/sdd
         fstype: ext4
         state: mounted
+      become: yes
+      become_method: sudo
+
+- hosts: actualProd
+  tasks:
+    - name: Create filesystem on attached data disk for backup location
+      filesystem: fstype=ext4 dev=/dev/sde
+      become: yes
+      become_method: sudo
+
+    - name: Point /backup to larger disk
+      mount:
+        name: /backup
+        src: /dev/sde
+        fstype: ext4
+        state: mounted
+      become: yes
+      become_method: sudo
+
+    - name: Make /backup writable by ubuntu
+      file:
+        path: /backup
+        mode: u=rwX,g=rX,o=rX
+        recurse: yes
+        owner: ubuntu
       become: yes
       become_method: sudo

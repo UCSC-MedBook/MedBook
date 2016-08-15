@@ -26,9 +26,12 @@ medbook.io
 mongo.medbook.io
 mongo-staging.medbook.io
 
-[prodboxes]
+[prodLike]
 medbook.io
 staging.medbook.io
+
+[actualProd]
+medbook.io
 
 [backup]
 backup.medbook.io
