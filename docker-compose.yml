@@ -113,7 +113,7 @@ services:
 #       MAIL_URL:
 
   cbioportal:
-    image: medbook/cbioportal:v1.2.1
+    image: medbook/cbioportal:v1.2.2
     container_name: "cbioportal"
     restart: always
 
