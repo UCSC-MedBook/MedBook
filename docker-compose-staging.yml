@@ -3,6 +3,6 @@ services:
   patient-care:
     build: patient-care
     image: medbook/patient-care:vBuilt
-  job-runner:
-    image: medbook/job-runner:vBuilt
-    build: MedBook-JobRunner
+#  job-runner:
+#    image: medbook/job-runner:vBuilt
+#    build: MedBook-JobRunner
