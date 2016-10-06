@@ -47,13 +47,14 @@ services:
 
   wrangler:
     container_name: "wrangler"
-    image: medbook/wrangler:v1.0.3
+    image: medbook/wrangler:v1.0.4.1
     restart: always
     environment:
       ROOT_URL: http://0.0.0.0:8000/wrangler
       WORLD_URL:
       MONGO_URL:
       MAIL_URL:
+      METEOR_SETTINGS: '{"public":{"WORLD_URL": "${WORLD_URL}"}}'
 
   job-runner:
     container_name: "job-runner"
@@ -71,7 +72,7 @@ services:
 
   patient-care:
     container_name: "patient-care"
-    image: medbook/patient-care:v1.0.4.1
+    image: medbook/patient-care:v1.0.6
     restart: always
     volumes:
       - ./patient-care/external-tools:/external-tools
@@ -83,7 +84,7 @@ services:
       MAIL_URL:
       KADIRA_APP_ID: ${PATIENT_CARE_KADIRA_APP_ID}
       KADIRA_APP_SECRET: ${PATIENT_CARE_KADIRA_APP_SECRET}
-      METEOR_SETTINGS: '{"genomic_expression_export":"/external-tools/exporters/genomic_expression_export.py","public":{"analyticsSettings":{"GoogleAnalytics":{"trackingId":"UA-77676037-2"}}}}'
+      METEOR_SETTINGS: '{"genomic_expression_export":"/external-tools/exporters/genomic_expression_export.py","public":{"WORLD_URL": "${WORLD_URL}", "analyticsSettings":{"GoogleAnalytics":{"trackingId":"UA-77676037-2"}}}}'
 
   # workbench:
   #   build: MedBook-Workbench
